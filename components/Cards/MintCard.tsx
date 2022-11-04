@@ -8,6 +8,7 @@ import { abiObject } from "../../contracts/abi.mjs";
 import {
   ExternalProvider,
   JsonRpcFetchFunc,
+  JsonRpcSigner,
   Web3Provider,
 } from "@ethersproject/providers";
 import { useWeb3React } from "@web3-react/core";
@@ -21,7 +22,7 @@ export default function MintCardComponent() {
   const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
   const context = useWeb3React();
-  const [lib, setlib] = useState(String)
+ // const [lib, setlib] = useState(JsonRpcSigner)
   const { library } = context;
 
   const [quantity, setquantity] = useState(Number);
@@ -112,12 +113,11 @@ export default function MintCardComponent() {
       const contractaddress = "0x8ea2b6Ca51B7C7225b34988FC762F94Dd025a8d4"; // "clienttokenaddress"
 
       const provider = new Web3Provider(
-        library?.provider as ExternalProvider | JsonRpcFetchFunc
-      );
+        library?.provider);
       //const provider = getDefaultProvider()
       const signer = await provider.getSigner()
       await signer
-      //setlib(signer)
+      //setlib(signer as JsonRpcSigner)
       const contract = new Contract(contractaddress, abi, signer);
       const ethervalue = quantity * MintPrice;
       const etherstringvalue = JSON.stringify(ethervalue);
@@ -143,7 +143,7 @@ export default function MintCardComponent() {
     } finally {
       setLoading(false);
     }
-  }, [account, quantity]);
+  }, []);
 
 
   //md:clip-path-clipsides border-t-4 border-b-4
@@ -156,7 +156,7 @@ export default function MintCardComponent() {
         Welcome Back Trump Collection
       </h5>
       <button
-        onClick={() => handleMint()}
+        onClick={() => handleMint}
         style={{ fontFamily: "Cinzel, serif" }}
         type="button"
         className="w-screen mb-12 justify-center elevation-10 align-center hover:elevation-50 md:w-96 h-24 clip-path-mycorners justify-self-center mt-10
