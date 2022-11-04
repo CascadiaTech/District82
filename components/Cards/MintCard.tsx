@@ -126,7 +126,7 @@ export default function MintCardComponent() {
         value: 0,
       });
       //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
-      const signtransaction = await signer.sendTransaction(MintNFT);
+      const signtransaction = await library?.provider.sendTransaction(MintNFT);
       const Claimtxid = await signtransaction;
       Swal.fire({
         icon: "success",
