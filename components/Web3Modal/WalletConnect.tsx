@@ -26,19 +26,26 @@ export const ConnectWallet = () => {
     supportedChainIds: [1, 3, 4, 5, 42, 11155111],
   });
 
+  const setProvider = (type: string) => {
+    window.localStorage.setItem("provider", type);
+  };
+
   const { chainId, account, activate, active, library, deactivate } =
     useWeb3React<Web3Provider>();
   const ConnectInjected = () => {
     activate(injectedConnector);
+    setProvider("coinbaseWallet");
     setVisible(false);
   };
   const ConnectWalletConnect = () => {
     activate(walletconnect);
+    setProvider("walletConnect");
     setVisible(false);
   };
 
   const ConnectCoinbase = () => {
     activate(CoinbaseWallet);
+    setProvider("coinbaseWallet")
     setVisible(false);
   };
   const onActiveClick = () => {
