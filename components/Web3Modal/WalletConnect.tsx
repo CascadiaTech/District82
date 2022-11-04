@@ -14,7 +14,7 @@ export const ConnectWallet = () => {
     supportedChainIds: [1, 3, 4, 5, 42, 11155111],
   });
   const walletconnect = new WalletConnectConnector({
-    rpc: { 1: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}` },
+    rpc: { 1: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`, 5: `https://goerli.infura.io/v3/${process.env.INFURA_KEY}` },
     bridge: "https://bridge.walletconnect.org",
     qrcode: true,
   });
