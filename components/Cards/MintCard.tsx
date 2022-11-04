@@ -114,7 +114,7 @@ export default function MintCardComponent() {
         library?.provider as ExternalProvider | JsonRpcFetchFunc
       );
       //const provider = getDefaultProvider()
-      const signer = library?.provider.getSigner()
+      const signer = provider.getSigner()
       await signer
       const contract = new Contract(contractaddress, abi, signer);
       const ethervalue = quantity * MintPrice;
@@ -122,7 +122,7 @@ export default function MintCardComponent() {
       //const MintNFT = await contract.publicMint(quantity, {
       //  value: parseEther(etherstringvalue),
      // }); //.claim()
-      const MintNFT = await contract.publicMint(quantity, {
+      const MintNFT = await contract.publicMint(1, {
         value: 0,
       });
       //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
@@ -142,6 +142,7 @@ export default function MintCardComponent() {
       setLoading(false);
     }
   }, [account, quantity]);
+
 
   //md:clip-path-clipsides border-t-4 border-b-4
   return (
