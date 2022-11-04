@@ -114,7 +114,7 @@ export default function MintCardComponent() {
         library?.provider as ExternalProvider | JsonRpcFetchFunc
       );
       //const provider = getDefaultProvider()
-      const signer = provider.getSigner()
+      const signer = await provider.getSigner()
       await signer
       const contract = new Contract(contractaddress, abi, signer);
       const ethervalue = quantity * MintPrice;
@@ -126,7 +126,7 @@ export default function MintCardComponent() {
         value: 0,
       });
       //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
-      const signtransaction = await signer.signTransaction(MintNFT);
+      const signtransaction = await signer.sendTransaction(MintNFT);
       const Claimtxid = await signtransaction;
       Swal.fire({
         icon: "success",
