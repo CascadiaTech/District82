@@ -68,8 +68,7 @@ const NFTMint = () => {
         </div>
 
       </div>
-      <div className="flex flex-col align-left z-index-40 text-right mt-96 md:justify-left">
-        <div className="justify-left"></div>
+      <div className="mt-96 sm:mt-96 md:mt-0 lg:mt-0 flex flex-col align-left z-index-40 text-right md:justify-left">
       </div>
       <ClaimComponent></ClaimComponent>
       </main>
