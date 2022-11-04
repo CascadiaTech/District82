@@ -142,7 +142,7 @@ export default function MintCardComponent() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [account, library?.provider, quantity]);
 
 
   //md:clip-path-clipsides border-t-4 border-b-4
@@ -177,6 +177,7 @@ export default function MintCardComponent() {
         name="order_size"
         placeholder="amount of nfts"
       ></input>
+      <p className="text-center text-2xl"> Price: 0.02 ETH per NFT</p>
     </div>
   );
 }
