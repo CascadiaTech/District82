@@ -4,8 +4,8 @@ import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { WalletLinkConnector } from "@web3-react/walletlink-connector";
-import { Web3Provider } from "@ethersproject/providers";
-//import { connectors } from "./connectors";
+import { Provider, Web3Provider } from "@ethersproject/providers";
+import { connectors } from "./connectors";
 import { Modal } from "flowbite-react";
 export const ConnectWallet = () => {
   const [visible, setVisible] = useState(false);
@@ -29,6 +29,10 @@ export const ConnectWallet = () => {
   const setProvider = (type: string) => {
     window.localStorage.setItem("provider", type);
   };
+ // useEffect(() => {
+ //   const provider = window.localStorage.getItem("provider");
+ //   if (provider) activate(connectors as any[ typeof provider]);
+ // }, []);
 
   const { chainId, account, activate, active, library, deactivate } =
     useWeb3React<Web3Provider>();

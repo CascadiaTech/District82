@@ -23,25 +23,12 @@ const Home: NextPage = () => {
   //   ScrollpositionAnimation();
   // }, [window.scrollY]);
   /// }
-  const { account } = useWeb3React();
+  const { account, chainId, active} = useWeb3React();
   const showConnectAWallet = Boolean(!account);
   const context = useWeb3React();
   const { library } = context;
   const [uniswaprovider, setuniswapprivder] = useState();
   const Runeaddress = '0xc68a4c68f17fed266a5e39e7140650acadfe78f8'
-  useEffect(() => {
-    async function setProvider() {
-      if (account) {
-        const provider = new Web3Provider(
-          library?.provider as ExternalProvider | JsonRpcFetchFunc
-        );
-        return provider;
-      } else {
-        return;
-      }
-    }
-    setProvider().then((result) => setuniswapprivder(result as any));
-  },[account]);
 
   const jsonRpcUrlMap = {
     1: ["https://mainnet.infura.io/v3/7724cb4383a249dfb4a847c90954b901"],
@@ -102,6 +89,7 @@ const Home: NextPage = () => {
             </div> 
          </div>
           <MintCardComponent></MintCardComponent>
+
           </main>
       <FooterComponent></FooterComponent>
     </div>
