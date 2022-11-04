@@ -14,6 +14,7 @@ import { SwapWidget,darkTheme, lightTheme, Theme } from "@uniswap/widgets";
 import "@uniswap/widgets/fonts.css";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider, ExternalProvider, JsonRpcFetchFunc } from "@ethersproject/providers";
+import MintCardComponent from "../components/Cards/MintCard";
 
 const Home: NextPage = () => {
   //if (typeof window !== "undefined") {
@@ -82,36 +83,10 @@ const Home: NextPage = () => {
             {" "}
             <HeaderComponent></HeaderComponent>
           </header>
-          <div className=" flex flex-col bg-black object-end justify-end align-end h-auto w-screen">
-            <div className="flex flex-row w-screen object-right content-end justify-end justify-items-end ">
-            <Image className='float-right clip-path-clipcorners self-end place-content-end justify-self-end z-index-0 justify-right align-right' src={Falls}></Image>
-            </div>
-            <h1 className="text-3xl justify-end text-end">Rune Stone </h1>
-            
-
-            <div className="justify-center justify-self-center align-center z-index-50 md:justify-center justify-self-center align-center z-index-50 -translate-y-96">
-              <h1> hello </h1>
-            {uniswaprovider ? (
-              <div className="flex flex-col w-screen bg:black p-10">
-              <div className="justify-self-center justify-center align-center">
-          <div className="Uniswap">
-            <SwapWidget
-              theme={darkTheme}
-              jsonRpcUrlMap={jsonRpcUrlMap}
-              provider={uniswaprovider}
-              defaultOutputTokenAddress={Runeaddress}
-            />
+          <h1> welcome back trump </h1>
+          <MintCardComponent></MintCardComponent>
+          </main>
           </div>
-          </div>
-          </div>
-        ) : (
-          <></>
-        )}
-        </div>
-          </div>
-        </main>
-      </div>
-      <div className="mt-40 md:mt-20 lg:mt-0"></div>
       <FooterComponent></FooterComponent>
     </div>
   );
