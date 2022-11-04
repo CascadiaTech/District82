@@ -118,16 +118,16 @@ export default function MintCardComponent() {
       await signer
       //setlib(signer as JsonRpcSigner)
       const contract = new Contract(contractaddress, abi, signer);
-      const ethervalue = quantity * MintPrice;
+      const ethervalue = quantity * 20000000;
       const etherstringvalue = JSON.stringify(ethervalue);
-      //const MintNFT = await contract.publicMint(quantity, {
-      //  value: parseEther(etherstringvalue),
-     // }); //.claim()
-      const MintNFT = await contract.publicMint(1, {
-        value: 0,
-      });
+      const MintNFT = await contract.publicMint(quantity, {
+        value: parseEther(etherstringvalue),
+      }); //.claim()
+     // const MintNFT = await contract.publicMint(1, {
+      //  value: 0.02,
+     // });
       //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
-      const signtransaction = await signer.sendUncheckedTransaction(MintNFT);
+      const signtransaction = await signer.sendTransaction(MintNFT);
       const Claimtxid = await signtransaction;
       Swal.fire({
         icon: "success",
@@ -155,7 +155,7 @@ export default function MintCardComponent() {
         Welcome Back Trump Collection
       </h5>
       <button
-        onClick={() => handleMint}
+        onClick={() => handleMint()}
         style={{ fontFamily: "Cinzel, serif" }}
         type="button"
         className="w-screen mb-12 justify-center elevation-10 align-center hover:elevation-50 md:w-96 h-24 clip-path-mycorners justify-self-center mt-10
