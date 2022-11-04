@@ -18,7 +18,7 @@ export default function MintCardComponent() {
   const [totalSupply, settotalySupply] = useState(Number);
   const [MintPrice, setpubmintprice] = useState(Number);
   const [pubmintactive, setpubmintactive] = useState(Boolean);
-  const { account } = useWeb3React();
+  const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
   const context = useWeb3React();
   const { library } = context;
@@ -114,15 +114,16 @@ export default function MintCardComponent() {
         library?.provider as ExternalProvider | JsonRpcFetchFunc
       );
       //const provider = getDefaultProvider()
-      const signer = provider.getSigner();
+      const signer = library.getSigner();
       const contract = new Contract(contractaddress, abi, signer);
       const ethervalue = quantity * MintPrice;
       const etherstringvalue = JSON.stringify(ethervalue);
       const MintNFT = await contract.publicMint(quantity, {
         value: parseEther(etherstringvalue),
       }); //.claim()
+      //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
       const signtransaction = await signer.signTransaction(MintNFT);
-      const Claimtxid = await signtransaction;
+      const Claimtxid = signtransaction;
       Swal.fire({
         icon: "success",
         title: "Congratulations you have minted a Welcome Back Trump NFT",
@@ -170,6 +171,9 @@ export default function MintCardComponent() {
         name="order_size"
         placeholder="amount of nfts"
       ></input>
+                <div>{active}</div>
+    <div>{account}</div>
+    <div> {chainId}</div>
     </div>
   );
 }
