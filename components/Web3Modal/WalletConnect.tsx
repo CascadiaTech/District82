@@ -5,7 +5,7 @@ import { InjectedConnector } from "@web3-react/injected-connector";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 import { Web3Provider } from "@ethersproject/providers";
-import { connectors } from "./connectors";
+//import { connectors } from "./connectors";
 import { Modal } from "flowbite-react";
 export const ConnectWallet = () => {
   const [visible, setVisible] = useState(false);
@@ -14,6 +14,7 @@ export const ConnectWallet = () => {
     supportedChainIds: [1, 3, 4, 5, 42, 11155111],
   });
   const walletconnect = new WalletConnectConnector({
+    supportedChainIds: [1, 3, 4, 5, 42, 11155111],
     rpc: { 1: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`, 5: `https://goerli.infura.io/v3/e0171a3aab904c6bbe6622e6598770ad` },
     bridge: "https://bridge.walletconnect.org",
     qrcode: true,  
@@ -21,7 +22,7 @@ export const ConnectWallet = () => {
 
   const CoinbaseWallet = new WalletLinkConnector({
     url: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`,
-    appName: "Web3-react Demo",
+    appName: "Web3",
     supportedChainIds: [1, 3, 4, 5, 42, 11155111],
   });
 
