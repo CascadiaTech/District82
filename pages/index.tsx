@@ -15,7 +15,7 @@ import "@uniswap/widgets/fonts.css";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider, ExternalProvider, JsonRpcFetchFunc } from "@ethersproject/providers";
 import MintCardComponent from "../components/Cards/MintCard";
-
+import trump from '../assets/trumpimages/trump.jpg'
 const Home: NextPage = () => {
   //if (typeof window !== "undefined") {
   //  useEffect(() => {
@@ -76,17 +76,33 @@ const Home: NextPage = () => {
   });
 
   return (
-    <div className="bg-runewaterfall">
-      <div className={styles.container}>
+    <div className="">
         <main className={styles.main}>
           <header>
             {" "}
             <HeaderComponent></HeaderComponent>
           </header>
-          <h1> welcome back trump </h1>
+          <div         style={{
+          display: "flex",
+          flexDirection: 'column',
+          justifyContent: "center",
+        }} className={'mx-auto self-center content-center items-center justify-center'}>
+            <h5
+             style={{ fontFamily: "Cinzel, serif" }}
+             className="mt-12 text-4xl sm:text-4xl text-4xl text-center font-bold tracking-tight text-gray-100 md:text-4xl lg:text-5xl dark:text-white"
+             >
+             Welcome Back Trump
+             </h5>
+             <Image className='w-screen justify-center align-center md:w-auto' src={trump}></Image>
+             <p className={'my-12'}></p>
+            <div className={'flex flex col object-center justify-center'}> 
+             <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">OpenSea</button>
+             <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Website</button>
+             <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Token</button>
+            </div> 
+         </div>
           <MintCardComponent></MintCardComponent>
           </main>
-          </div>
       <FooterComponent></FooterComponent>
     </div>
   );
