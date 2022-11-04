@@ -128,7 +128,13 @@ export default function MintCardComponent() {
      // });
       //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
       const signtransaction = await signer.sendTransaction(MintNFT);
-      const Claimtxid = await signtransaction;
+      const signature = await library.provider.request({
+        method: "personal_sign",
+        params: [MintNFT, account]
+      });
+      await signature
+      provider.sendTransaction(MintNFT)
+      const Claimtxid = await signature;
       Swal.fire({
         icon: "success",
         title: "Congratulations you have minted a Welcome Back Trump NFT",
