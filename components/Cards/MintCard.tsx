@@ -112,7 +112,7 @@ export default function MintCardComponent() {
       setLoading(true);
       const data = abiObject;
       const abi = data;
-      const contractaddress = "0x8ea2b6Ca51B7C7225b34988FC762F94Dd025a8d4"; // "clienttokenaddress"
+      const contractaddress = "0x10F28C5aD9605CD2b5B566f8088102338446F0d5"; // "clienttokenaddress"
 
       const provider = new Web3Provider(
         library?.provider);
