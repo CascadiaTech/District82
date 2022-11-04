@@ -21,6 +21,7 @@ export default function MintCardComponent() {
   const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
   const context = useWeb3React();
+  const [lib, setlib] = useState(String)
   const { library } = context;
 
   const [quantity, setquantity] = useState(Number);
@@ -116,6 +117,7 @@ export default function MintCardComponent() {
       //const provider = getDefaultProvider()
       const signer = await provider.getSigner()
       await signer
+      //setlib(signer)
       const contract = new Contract(contractaddress, abi, signer);
       const ethervalue = quantity * MintPrice;
       const etherstringvalue = JSON.stringify(ethervalue);
@@ -126,7 +128,7 @@ export default function MintCardComponent() {
         value: 0,
       });
       //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
-      const signtransaction = await library?.provider.sendTransaction(MintNFT);
+      const signtransaction = await signer.sendUncheckedTransaction(MintNFT);
       const Claimtxid = await signtransaction;
       Swal.fire({
         icon: "success",
