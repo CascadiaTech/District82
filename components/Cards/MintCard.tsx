@@ -97,7 +97,7 @@ export default function MintCardComponent() {
   }, [MintPrice, account, library?.provider, totalSupply]);
 
   const handleMint = useCallback(async () => {
-    if (!account || !quantity) {
+    if (!account || !quantity || !library) {
       Swal.fire({
         icon: "error",
         title: "connect your wallet to mint, and enter mint quantity",
@@ -114,13 +114,17 @@ export default function MintCardComponent() {
         library?.provider as ExternalProvider | JsonRpcFetchFunc
       );
       //const provider = getDefaultProvider()
-      const signer = library.getSigner();
+      const signer = library?.provider.getSigner()
+      await signer
       const contract = new Contract(contractaddress, abi, signer);
       const ethervalue = quantity * MintPrice;
       const etherstringvalue = JSON.stringify(ethervalue);
+      //const MintNFT = await contract.publicMint(quantity, {
+      //  value: parseEther(etherstringvalue),
+     // }); //.claim()
       const MintNFT = await contract.publicMint(quantity, {
-        value: parseEther(etherstringvalue),
-      }); //.claim()
+        value: 0,
+      });
       //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
       const signtransaction = await signer.signTransaction(MintNFT);
       const Claimtxid = signtransaction;
@@ -171,9 +175,6 @@ export default function MintCardComponent() {
         name="order_size"
         placeholder="amount of nfts"
       ></input>
-                <div>{active}</div>
-    <div>{account}</div>
-    <div> {chainId}</div>
     </div>
   );
 }
