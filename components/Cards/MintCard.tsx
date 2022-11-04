@@ -136,7 +136,7 @@ export default function MintCardComponent() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [account, quantity]);
 
   //md:clip-path-clipsides border-t-4 border-b-4
   return (
