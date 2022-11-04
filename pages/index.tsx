@@ -93,9 +93,9 @@ const Home: NextPage = () => {
              >
              Welcome Back Trump
              </h5>
-             <Image className='w-screen justify-center align-center md:w-auto' src={trump}></Image>
+             <Image className='w-screen mx-5 justify-center align-center md:w-auto' src={trump}></Image>
              <p className={'my-12'}></p>
-            <div className={'flex flex col object-center justify-center'}> 
+            <div className={'flex flex-row w-screen object-center justify-center'}> 
              <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">OpenSea</button>
              <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Website</button>
              <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Token</button>

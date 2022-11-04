@@ -84,7 +84,7 @@ export default function FooterComponent() {
               <ul className="text-gray-600 dark:text-gray-400">
                 <li className="mb-4">
                   <a
-                    href="https://t.me/RunestonePortal"
+                    href="https://t.me/WelcomeBackTrump_Token"
                     className="hover:underline "
                   >
                     Telegram
@@ -92,10 +92,10 @@ export default function FooterComponent() {
                 </li>
                 <li>
                   <a
-                    href="https://discord.gg/ENczHU9p52"
+                    href="https://app.uniswap.org/#/swap?outputCurrency=0xa01710ca98e4d66fd8d2044b3437c024e7a64d76"
                     className="hover:underline"
                   >
-                    Discord
+                    Uniswap
                   </a>
                 </li>
               </ul>
@@ -132,10 +132,10 @@ export default function FooterComponent() {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              <span className="sr-only">Reddit page</span>
+              <span className="sr-only"></span>
             </a>
             <a
-              href="https://twitter.com/runestonetoken"
+              href="https://twitter.com/Trump_welcome1"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -149,7 +149,7 @@ export default function FooterComponent() {
               <span className="sr-only">Twitter page</span>
             </a>
             <a
-              href=""
+              href="https://github.com/CascadiaTech/WelcomeBackTrump"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
