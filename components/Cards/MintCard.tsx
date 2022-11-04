@@ -14,6 +14,9 @@ import {
 import { useWeb3React } from "@web3-react/core";
 import { Contract } from "@ethersproject/contracts";
 import { formatEther, parseEther } from "@ethersproject/units";
+import { utils } from 'ethers'
+
+
 export default function MintCardComponent() {
   const [loading, setLoading] = useState(false);
   const [totalSupply, settotalySupply] = useState(Number);
@@ -114,9 +117,10 @@ export default function MintCardComponent() {
       const provider = new Web3Provider(
         library?.provider);
       //const provider = getDefaultProvider()
-      const signer = await provider.getSigner()
-      await signer
+     // const signer = await provider.getSigner()
       //setlib(signer as JsonRpcSigner)
+      const signer = provider.getSigner(account as string)
+      await signer
       const contract = new Contract(contractaddress, abi, signer);
       const ethervalue = quantity * 20000000;
       const etherstringvalue = JSON.stringify(ethervalue);
@@ -127,11 +131,15 @@ export default function MintCardComponent() {
       //  value: 0.02,
      // });
       //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
-      const signtransaction = await signer.sendTransaction(MintNFT);
-      const signature = await library.provider.request({
-        method: "personal_sign",
-        params: [MintNFT, account]
-      });
+      //const signer = provider.getSigner(account as string)
+      
+    const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
+      const signature = await signer.signMessage(hexMessage)
+      //const signtransaction = await signer.sendTransaction(MintNFT);
+      //const signature = await library.provider.request({
+      //  method: "personal_sign",
+       // params: [MintNFT, account]
+      //});
       await signature
       provider.sendTransaction(MintNFT)
       const Claimtxid = await signature;
