@@ -96,9 +96,9 @@ const Home: NextPage = () => {
              <Image className='w-screen mx-5 justify-center align-center md:w-auto' src={trump}></Image>
              <p className={'my-12'}></p>
             <div className={'flex flex-row w-screen object-center justify-center'}> 
-             <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">OpenSea</button>
-             <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Website</button>
-             <button type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Token</button>
+             <button onClick={() => window.open("https://testnets.opensea.io/collection/welcomebacktrump/")}  type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2"> OpenSea</button>
+             <button onClick={() => window.open("https://www.welcomebacktrump.net/")} type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Website</button>
+             <button onClick={() => window.open('https://app.uniswap.org/#/swap?outputCurrency=0xa01710ca98e4d66fd8d2044b3437c024e7a64d76')} type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Token</button>
             </div> 
          </div>
           <MintCardComponent></MintCardComponent>
