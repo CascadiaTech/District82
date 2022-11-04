@@ -24,7 +24,6 @@ export default function MintCardComponent() {
   const context = useWeb3React();
  // const [lib, setlib] = useState(JsonRpcSigner)
   const { library } = context;
-
   const [quantity, setquantity] = useState(Number);
   if (typeof window !== "undefined") {
     useEffect(() => {

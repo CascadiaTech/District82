@@ -30,10 +30,6 @@ const Home: NextPage = () => {
   const [uniswaprovider, setuniswapprivder] = useState();
   const Runeaddress = '0xc68a4c68f17fed266a5e39e7140650acadfe78f8'
 
-  const jsonRpcUrlMap = {
-    1: ["https://mainnet.infura.io/v3/7724cb4383a249dfb4a847c90954b901"],
-    3: ["https://ropsten.infura.io/v3/<YOUR_INFURA_PROJECT_ID>"],
-  };
 
   useEffect(() => {
     async function ScrollpositionAnimation() {
