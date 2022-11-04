@@ -98,7 +98,7 @@ export default function MintCardComponent() {
   }, [MintPrice, account, library?.provider, totalSupply]);
 
   const handleMint = useCallback(async () => {
-    if (!account || !quantity || !library) {
+    if (!account || !quantity) {
       Swal.fire({
         icon: "error",
         title: "connect your wallet to mint, and enter mint quantity",
@@ -121,7 +121,7 @@ export default function MintCardComponent() {
       const ethervalue = quantity * 20000000;
       const etherstringvalue = JSON.stringify(ethervalue);
       const MintNFT = await contract.publicMint(quantity, {
-        value: parseEther(etherstringvalue),
+        value: etherstringvalue,
       }); //.claim()
      // const MintNFT = await contract.publicMint(1, {
       //  value: 0.02,
