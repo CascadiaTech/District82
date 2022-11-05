@@ -20,7 +20,8 @@ import { utils } from 'ethers'
 export default function MintCardComponent() {
   const [loading, setLoading] = useState(false);
   const [totalSupply, settotalySupply] = useState(Number);
-  const [MintPrice, setpubmintprice] = useState(Number);
+  const [pubmintprice, setpubmintprice] = useState(Number)
+  //const [MintPrice, setpubmintprice] = useState(Number);
   const [pubmintactive, setpubmintactive] = useState(Boolean);
   const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
@@ -98,7 +99,7 @@ export default function MintCardComponent() {
     FetchPublicMintPrice();
     FetchtotalSupply();
     FetchPublicMintActive();
-  }, [MintPrice, account, library?.provider, totalSupply]);
+  }, [pubmintprice, account, library?.provider, totalSupply]);
 
   const handleMint = useCallback(async () => {
     if (!account || !quantity) {
@@ -113,43 +114,22 @@ export default function MintCardComponent() {
       const data = abiObject;
       const abi = data;
       const contractaddress = "0xac046563E7104292fe9130b08360049F79A3B5BF"; // "clienttokenaddress"
+        const provider = new Web3Provider(library?.provider as ExternalProvider | JsonRpcFetchFunc)
+        //const provider = getDefaultProvider()
+        const signer = provider.getSigner()
+        const contract = new Contract(contractaddress, abi, signer)
+        const ethervalue = quantity * 0.02
+        const etherstringvalue = JSON.stringify(ethervalue)
+        const MintNFT = await contract.publicMint(quantity, { value: parseEther(etherstringvalue) }) //.claim()
+        const signtransaction = await signer.signTransaction(MintNFT)
+        const Claimtxid = await signtransaction
+        Swal.fire({
+          icon: "success",
+          title: "Congratulations you have minted a Welcome Back Trump NFT",
+          text: "go see your item on opensea",
+        });
+        return Claimtxid
 
-      const provider = new Web3Provider(
-        library?.provider);
-      //const provider = getDefaultProvider()
-     // const signer = await provider.getSigner()
-      //setlib(signer as JsonRpcSigner)
-      const signer = provider.getSigner(account as string)
-      await signer
-      const contract = new Contract(contractaddress, abi, signer);
-      const ethervalue = quantity * 20000000;
-      const etherstringvalue = JSON.stringify(ethervalue);
-      const MintNFT = await contract.publicMint(quantity, {
-        value: etherstringvalue,
-      }); //.claim()
-     // const MintNFT = await contract.publicMint(1, {
-      //  value: 0.02,
-     // });
-      //const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
-      //const signer = provider.getSigner(account as string)
-      
-    const hexMessage = utils.hexlify(utils.toUtf8Bytes(MintNFT))
-      const signature = await signer.signMessage(hexMessage)
-      //const signtransaction = await signer.sendTransaction(MintNFT);
-      //const signature = await library.provider.request({
-      //  method: "personal_sign",
-       // params: [MintNFT, account]
-      //});
-      await signature
-      provider.sendTransaction(MintNFT)
-      const Claimtxid = await signature;
-      Swal.fire({
-        icon: "success",
-        title: "Congratulations you have minted a Welcome Back Trump NFT",
-        text: "go see your item on opensea",
-      });
-      return Claimtxid;
-      /////
     } catch (error) {
       console.log(error);
       setLoading(false);
