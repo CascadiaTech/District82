@@ -1,7 +1,5 @@
 import "tailwindcss-elevation";
 import React, { useCallback, useEffect, useState } from "react";
-import { animated } from "react-spring";
-import { useSpring } from "react-spring/web";
 import ScrollpositionAnimation from "../../hooks/OnScroll";
 import Swal from "sweetalert2";
 import { abiObject } from "../../contracts/abi.mjs";
@@ -14,19 +12,17 @@ import {
 import { useWeb3React } from "@web3-react/core";
 import { Contract } from "@ethersproject/contracts";
 import { formatEther, parseEther } from "@ethersproject/units";
-import { utils } from 'ethers'
+///import { utils } from 'ethers'
 
 
 export default function MintCardComponent() {
   const [loading, setLoading] = useState(false);
   const [totalSupply, settotalySupply] = useState(Number);
   const [pubmintprice, setpubmintprice] = useState(Number)
-  //const [MintPrice, setpubmintprice] = useState(Number);
   const [pubmintactive, setpubmintactive] = useState(Boolean);
   const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
   const context = useWeb3React();
- // const [lib, setlib] = useState(JsonRpcSigner)
   const { library } = context;
   const [quantity, setquantity] = useState(Number);
   if (typeof window !== "undefined") {
@@ -44,7 +40,7 @@ export default function MintCardComponent() {
           library?.provider as ExternalProvider | JsonRpcFetchFunc
         );
         const NFTabi = abiObject;
-        const contractaddress = "0x8ea2b6Ca51B7C7225b34988FC762F94Dd025a8d4";
+        const contractaddress = "0xac046563E7104292fe9130b08360049F79A3B5BF";
         const contract = new Contract(contractaddress, NFTabi, provider);
         const Totalminted = await contract.totalSupply();
         const FinalResult = Number(Totalminted);
@@ -64,7 +60,7 @@ export default function MintCardComponent() {
           library?.provider as ExternalProvider | JsonRpcFetchFunc
         );
         const NFTabi = abiObject;
-        const contractaddress = "0x8ea2b6Ca51B7C7225b34988FC762F94Dd025a8d4";
+        const contractaddress = "0xac046563E7104292fe9130b08360049F79A3B5BF";
         const contract = new Contract(contractaddress, NFTabi, provider);
         const Mintprice = await contract.PUB_MINT_PRICE();
         const MintPriceformatted = formatEther(Mintprice);
@@ -85,7 +81,7 @@ export default function MintCardComponent() {
           library?.provider as ExternalProvider | JsonRpcFetchFunc
         );
         const NFTabi = abiObject;
-        const contractaddress = "0x8ea2b6Ca51B7C7225b34988FC762F94Dd025a8d4";
+        const contractaddress = "0xac046563E7104292fe9130b08360049F79A3B5BF";
         const contract = new Contract(contractaddress, NFTabi, provider);
         const Mintactive = await contract.pubMintActive();
         setpubmintactive(Mintactive);
@@ -105,7 +101,7 @@ export default function MintCardComponent() {
     if (!account || !quantity) {
       Swal.fire({
         icon: "error",
-        title: "connect your wallet to mint, and enter mint quantity",
+        title: "Connect Your Wallet To Mint, and Enter A Mint Quantity",
       });
     }
 
@@ -126,7 +122,7 @@ export default function MintCardComponent() {
         Swal.fire({
           icon: "success",
           title: "Congratulations you have minted a Welcome Back Trump NFT",
-          text: "go see your item on opensea",
+          text: "Go View your item on Opensea",
         });
         return Claimtxid
 

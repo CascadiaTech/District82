@@ -8,28 +8,15 @@ import FooterComponent from "../components/Footer/FooterComponent";
 import DualCardComponent from "../components/DualCards/DualCardComponent";
 import ScrollpositionAnimation from "../hooks/OnScroll";
 import { useEffect, useState } from "react";
-import AboutusComponent from "../components/Aboutus/AboutusComponent";
-import Falls from "../assets/images/Falls.jpg";
-import { SwapWidget,darkTheme, lightTheme, Theme } from "@uniswap/widgets";
 import "@uniswap/widgets/fonts.css";
 import { useWeb3React } from "@web3-react/core";
-import { Web3Provider, ExternalProvider, JsonRpcFetchFunc } from "@ethersproject/providers";
 import MintCardComponent from "../components/Cards/MintCard";
-import trump from '../assets/trumpimages/trump.jpg'
+import trump from "../assets/trumpimages/trump.jpg";
 const Home: NextPage = () => {
-  //if (typeof window !== "undefined") {
-  //  useEffect(() => {
-  // Update the document title using the browser API
-  //   ScrollpositionAnimation();
-  // }, [window.scrollY]);
-  /// }
-  const { account, chainId, active} = useWeb3React();
+  const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
   const context = useWeb3React();
   const { library } = context;
-  const [uniswaprovider, setuniswapprivder] = useState();
-  const Runeaddress = '0xc68a4c68f17fed266a5e39e7140650acadfe78f8'
-
 
   useEffect(() => {
     async function ScrollpositionAnimation() {
@@ -60,33 +47,69 @@ const Home: NextPage = () => {
 
   return (
     <div className="">
-        <main className={styles.main}>
-          <header>
-            {" "}
-            <HeaderComponent></HeaderComponent>
-          </header>
-          <div         style={{
-          display: "flex",
-          flexDirection: 'column',
-          justifyContent: "center",
-        }} className={'mx-auto self-center content-center items-center justify-center'}>
-            <h5
-             style={{ fontFamily: "Cinzel, serif" }}
-             className="mt-12 text-4xl sm:text-4xl text-4xl text-center font-bold tracking-tight text-gray-100 md:text-4xl lg:text-5xl dark:text-white"
-             >
-             Welcome Back Trump
-             </h5>
-             <Image className='w-screen mx-5 justify-center align-center md:w-auto' src={trump}></Image>
-             <p className={'my-12'}></p>
-            <div className={'flex flex-row w-screen object-center justify-center'}> 
-             <button onClick={() => window.open("https://testnets.opensea.io/collection/welcomebacktrump/")}  type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2"> OpenSea</button>
-             <button onClick={() => window.open("https://www.welcomebacktrump.net/")} type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Website</button>
-             <button onClick={() => window.open('https://app.uniswap.org/#/swap?outputCurrency=0xa01710ca98e4d66fd8d2044b3437c024e7a64d76')} type="button" className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2">Token</button>
-            </div> 
-         </div>
-          <MintCardComponent></MintCardComponent>
-
-          </main>
+      <main className={styles.main}>
+        <header>
+          {" "}
+          <HeaderComponent></HeaderComponent>
+        </header>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+          className={
+            "mx-auto self-center content-center items-center justify-center"
+          }
+        >
+          <h5
+            style={{ fontFamily: "Cinzel, serif" }}
+            className="mt-12 text-4xl sm:text-4xl text-4xl text-center font-bold tracking-tight text-gray-100 md:text-4xl lg:text-5xl dark:text-white"
+          >
+            Welcome Back Trump
+          </h5>
+          <Image
+            className="w-screen mx-5 justify-center align-center md:w-auto"
+            src={trump}
+          ></Image>
+          <p className={"my-12"}></p>
+          <div
+            className={"flex flex-row w-screen object-center justify-center"}
+          >
+            <button
+              onClick={() =>
+                window.open(
+                  "https://opensea.io/collection/officialwelcomebacktrump"
+                )
+              }
+              type="button"
+              className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2"
+            >
+              {" "}
+              OpenSea
+            </button>
+            <button
+              onClick={() => window.open("https://www.welcomebacktrump.net/")}
+              type="button"
+              className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2"
+            >
+              Website
+            </button>
+            <button
+              onClick={() =>
+                window.open(
+                  "https://app.uniswap.org/#/swap?outputCurrency=0xa01710ca98e4d66fd8d2044b3437c024e7a64d76"
+                )
+              }
+              type="button"
+              className="text-gray-100 hover:text-black border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-lg px-8 py-4 text-center mr-2 mb-2"
+            >
+              Token
+            </button>
+          </div>
+        </div>
+        <MintCardComponent></MintCardComponent>
+      </main>
       <FooterComponent></FooterComponent>
     </div>
   );
