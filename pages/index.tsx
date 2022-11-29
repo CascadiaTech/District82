@@ -25,6 +25,9 @@ const videoRef: any = useRef(undefined) as React.MutableRefObject<undefined>;
 useEffect(() => {
   videoRef.current.defaultMuted = true;
 })
+useEffect(() => {
+  videoRef.current.play()
+},[])
   function RenderButtons(){
     setisended(true)
   }
@@ -33,7 +36,7 @@ useEffect(() => {
   return (
     <>
           <main className={styles.main}>
-        <video ref={videoRef} className="" id='videod82' muted={true} autoPlay={true} playsInline={true} onEnded={()=>RenderButtons()}>
+        <video ref={videoRef} className="" id='videod82' muted playsInline onEnded={()=>RenderButtons()}>
             <source src="./newvideo.mp4" type='video/mp4'/>
         </video>
 
