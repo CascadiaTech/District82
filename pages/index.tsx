@@ -26,7 +26,12 @@ useEffect(() => {
   videoRef.current.defaultMuted = true;
 })
 useEffect(() => {
+  async function loadandplay() {
+  const load = videoRef.current.load()
+  await load
   videoRef.current.play()
+  } 
+loadandplay()
 },[])
   function RenderButtons(){
     setisended(true)
@@ -36,7 +41,7 @@ useEffect(() => {
   return (
     <>
           <main className={styles.main}>
-        <video ref={videoRef} className="w-screen h-screen" autoPlay loop muted playsInline onEnded={()=>RenderButtons()}>
+        <video ref={videoRef} className="w-screen h-screen" autoPlay muted playsInline onEnded={()=>RenderButtons()}>
             <source src="./newvideo.mp4" type='video/mp4'/>
         </video>
 
