@@ -39,7 +39,11 @@ module.exports = {
         'footer-texture': "url('/img/footer-texture.png')",
       },
       spacing: {
-        '100': '50vw',
+        '40': '40vw',
+        '45': '45vw',
+        '50': '50vw',
+
+        '90': '90vw',
       },
       fontFamily: {
         'serif': ['Cinzel', 'serif'],
