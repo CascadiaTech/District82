@@ -21,8 +21,10 @@ const Home: NextPage = () => {
   const { library } = context;
 const [buttonhidden, isbuttonhidden] = useState(true)
 const [isended, setisended] = useState(false)
-  useEffect(() => {})
-
+const videoRef: any = useRef(undefined) as React.MutableRefObject<undefined>;
+useEffect(() => {
+  videoRef.current.defaultMuted = true;
+})
   function RenderButtons(){
     setisended(true)
   }
@@ -31,7 +33,7 @@ const [isended, setisended] = useState(false)
   return (
     <>
           <main className={styles.main}>
-        <video className="" id='videod82' muted={true} autoPlay={true} playsInline={true} onEnded={()=>RenderButtons()}>
+        <video ref={videoRef} className="" id='videod82' muted={true} autoPlay={true} playsInline={true} onEnded={()=>RenderButtons()}>
             <source src="./newvideo.mp4" type='video/mp4'/>
         </video>
 
