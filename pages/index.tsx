@@ -36,7 +36,7 @@ useEffect(() => {
   return (
     <>
           <main className={styles.main}>
-        <video ref={videoRef} className="" id='videod82' muted playsInline onEnded={()=>RenderButtons()}>
+        <video ref={videoRef} className="w-screen h-screen" autoPlay loop muted playsInline onEnded={()=>RenderButtons()}>
             <source src="./newvideo.mp4" type='video/mp4'/>
         </video>
 
