@@ -19,39 +19,38 @@ const Home: NextPage = () => {
   const showConnectAWallet = Boolean(!account);
   const context = useWeb3React();
   const { library } = context;
-const [buttonhidden, isbuttonhidden] = useState(true)
 const [isended, setisended] = useState(false)
-const videoRef: any = useRef(undefined) as React.MutableRefObject<undefined>;
+const videoRef: any = useRef(null) as React.MutableRefObject<null>;
 useEffect(() => {
-  //videoRef.current.defaultMuted = true;
+  videoRef.current.defaultMuted = true;
 })
+
+const attemptPlay = () => {
+  videoRef &&
+  videoRef.current &&
+  videoRef.current.load() &&
+  videoRef.current.play().catch((error: any) => {console.log("error attempting to play", error)})
+}
 useEffect(() => {
-  //async function loadandplay() {
-  //const load = videoRef.current.load()
-  //await load
- // videoRef.current.play()
- // } 
-//loadandplay()
+attemptPlay()
 },[])
   function RenderButtons(){
     setisended(true)
   }
- 
-//          
-//<video ref={videoRef} className="w-screen h-screen" autoPlay muted playsInline onEnded={()=>RenderButtons()}>
-////<source src="./newvideo.mp4" type='video/mp4'/>
-//</video>
+ // dangerouslySetInnerHTML={{
+ //   __html: `<video className="app__backgroundVideo" autoplay loop muted playsinline>
+//<source src='./newvideo.mp4' type="video/mp4" />
+//Your browser does not support the video tag.
+//</video>`,
+  //}}
+
   return (
     <>
-    <main className={styles.main}>
-    <div
-          dangerouslySetInnerHTML={{
-            __html: `<video className="app__backgroundVideo" autoplay loop muted playsinline>
-      <source src='./newvideo.mp4' type="video/mp4" />
-      Your browser does not support the video tag.
-</video>`,
-          }}
-        />
+    
+          <main className={styles.main}>
+        <video ref={videoRef} className="w-screen h-screen" autoPlay muted playsInline onEnded={()=>RenderButtons()}>
+            <source src="./newvideo.mp4" type='video/mp4'/> Your browser does not support the video tag, update your browser
+        </video>
 
 <DappComponent ended={isended}></DappComponent>
 </main>
