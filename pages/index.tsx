@@ -31,7 +31,7 @@ const [isended, setisended] = useState(false)
   return (
     <>
           <main className={styles.main}>
-        <video className="" id='videod82' autoPlay muted onEnded={()=>RenderButtons()} playsInline>
+        <video className="" id='videod82' muted={true} autoPlay={true} playsInline={true} onEnded={()=>RenderButtons()} playsInline>
             <source src="./newvideo.mp4" type='video/webm; codecs=vp9'/>
         </video>
 
