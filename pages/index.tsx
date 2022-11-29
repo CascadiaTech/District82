@@ -23,27 +23,35 @@ const [buttonhidden, isbuttonhidden] = useState(true)
 const [isended, setisended] = useState(false)
 const videoRef: any = useRef(undefined) as React.MutableRefObject<undefined>;
 useEffect(() => {
-  videoRef.current.defaultMuted = true;
+  //videoRef.current.defaultMuted = true;
 })
 useEffect(() => {
-  async function loadandplay() {
-  const load = videoRef.current.load()
-  await load
-  videoRef.current.play()
-  } 
-loadandplay()
+  //async function loadandplay() {
+  //const load = videoRef.current.load()
+  //await load
+ // videoRef.current.play()
+ // } 
+//loadandplay()
 },[])
   function RenderButtons(){
     setisended(true)
   }
  
-
+//          
+//<video ref={videoRef} className="w-screen h-screen" autoPlay muted playsInline onEnded={()=>RenderButtons()}>
+////<source src="./newvideo.mp4" type='video/mp4'/>
+//</video>
   return (
     <>
-          <main className={styles.main}>
-        <video ref={videoRef} className="w-screen h-screen" autoPlay muted playsInline onEnded={()=>RenderButtons()}>
-            <source src="./newvideo.mp4" type='video/mp4'/>
-        </video>
+    <main className={styles.main}>
+    <div
+          dangerouslySetInnerHTML={{
+            __html: `<video className="app__backgroundVideo" autoplay loop muted playsinline>
+      <source src='./newvideo.mp4' type="video/mp4" />
+      Your browser does not support the video tag.
+</video>`,
+          }}
+        />
 
 <DappComponent ended={isended}></DappComponent>
 </main>
