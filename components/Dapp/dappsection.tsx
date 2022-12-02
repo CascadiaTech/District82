@@ -30,10 +30,10 @@ export default function DappComponent(props: any) {
   return (
 <>
       {distict ? (
-        <div className=" transition-all">
-          {" "}
-          <div className="flex flex-row ">
-            <div className="flex flex-col text-left mr-24">
+        <div className="absolute transition-all">
+ 
+          <div className="z-0 flex flex-row ">
+            <div className="cursor-pointer flex flex-col text-left text-white">
               <p> District 82 </p>
               <p> Token Adress: 0x00000000000000000000000000000000000</p>
               <p> Your Account: {account}</p>
