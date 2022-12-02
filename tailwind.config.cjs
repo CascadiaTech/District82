@@ -37,6 +37,7 @@ module.exports = {
       backgroundImage: {
         'runewaterfall': "url('../assets/images/Falls.jpg')",
         'footer-texture': "url('/img/footer-texture.png')",
+        'testvid': "url('../public/newvideo.mp4')",
       },
       spacing: {
         '40': '40vw',
@@ -44,6 +45,8 @@ module.exports = {
         '50': '50vw',
 
         '90': '90vw',
+        '1000': '1000px',
+        '1500': '1500px'
       },
       fontFamily: {
         'serif': ['Cinzel', 'serif'],
