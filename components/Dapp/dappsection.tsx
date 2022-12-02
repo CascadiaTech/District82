@@ -24,15 +24,7 @@ export default function DappComponent(props: any) {
   const [uniswaprovider, setuniswapprivder] = useState();
   const D82contract = "0x00000000000000000000000000000";
 
-  
   useEffect(() => {
-    async function setvisibility() {
-      if (props.ended === false) {
-        setbuttonhidden(true);
-      } else setbuttonhidden(false);
-    }
-    console.log(props.ended);
-
     async function PendingReflections() {
       try {
         setLoading(true);
@@ -62,8 +54,19 @@ export default function DappComponent(props: any) {
       }
     }
     PendingReflections();
-    setvisibility();
+
   }, [account]);
+
+  
+  useEffect(() => {
+    async function setvisibility() {
+      if (props.ended === false) {
+        setbuttonhidden(true);
+      } else setbuttonhidden(false);
+    }
+    console.log(props.ended);
+    setvisibility();
+  });
 
   
   async function Claim() {
@@ -164,7 +167,6 @@ export default function DappComponent(props: any) {
               : "text-center text-white opacity-1 transition-all duration-1000 absolute"
           }
         >
-          <div className=""></div>
           <div className="grid grid-cols-6 lg:gap-4 xl:gap-12">
             <div className={"w-20 h-20"}>
               <Image
