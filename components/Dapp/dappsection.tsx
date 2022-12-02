@@ -7,7 +7,11 @@ import twitter from "../../assets/twitter.png";
 import telegram from "../../assets/telegram.png";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-import dextools from "../../assets/dextools.png";
+import dextools from '../../assets/dextools.png'
+import { Contract } from "@ethersproject/contracts";
+import Swal from "sweetalert2";
+import { abiObject } from "../../contracts/abi.mjs";
+import { ExternalProvider, JsonRpcFetchFunc, Web3Provider } from "@ethersproject/providers";
 export default function DappComponent(props: any) {
   const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
@@ -15,7 +19,12 @@ export default function DappComponent(props: any) {
   const { library } = context;
   const [distict, setdistrictactive] = useState(false);
   const [buttonhidden, setbuttonhidden] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [pendingreflections, setpendingreflections] = useState(Number);
+  const [uniswaprovider, setuniswapprivder] = useState();
+  const D82contract = "0x00000000000000000000000000000";
 
+  
   useEffect(() => {
     async function setvisibility() {
       if (props.ended === false) {
@@ -23,8 +32,94 @@ export default function DappComponent(props: any) {
       } else setbuttonhidden(false);
     }
     console.log(props.ended);
+
+    async function PendingReflections() {
+      try {
+        setLoading(true);
+        const abi = abiObject;
+        const provider = new Web3Provider(
+          library?.provider as ExternalProvider | JsonRpcFetchFunc
+        );
+        const contractaddress = "0x103b603D95F769a8184c1e7cd49c81Bc826aB6E8"; // "clienttokenaddress"
+        const contract = new Contract(contractaddress, abi, provider);
+        const rewardToken = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
+        const Reflections = await contract.withdrawableDividendOf(
+          account,
+          rewardToken
+        ); //.claim()
+        //const FinalReflections = BigNumber.from(Reflections)
+        // const test = formatEther(String(Reflections))
+        const finalnumber = Number(Reflections);
+        setpendingreflections(finalnumber);
+        console.log(Reflections);
+
+        return finalnumber;
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    }
+    PendingReflections();
     setvisibility();
-  });
+  }, [account]);
+
+  
+  async function Claim() {
+    if (!account) {
+      Swal.fire({
+        icon: "error",
+        title: "Connect Your Wallet to Claim Your Reflections",
+        timer: 5000,
+      });
+    }
+    if (pendingreflections <= 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Currently You Do Not Have Any Reflections",
+        timer: 5000,
+      });
+    }
+    try {
+      setLoading(true);
+      const abi = abiObject;
+      const provider = new Web3Provider(
+        library?.provider as ExternalProvider | JsonRpcFetchFunc
+      );
+      const signer = provider.getSigner();
+      const contractaddress = "0x103b603D95F769a8184c1e7cd49c81Bc826aB6E8"; // "clienttokenaddress"
+      const contract = new Contract(contractaddress, abi, signer);
+      const ClaimTokens = await contract.claim(); //.claim()
+      const signtransaction = await signer.signTransaction(ClaimTokens);
+      const Claimtxid = await signtransaction;
+      console.log(Claimtxid);
+
+      return Claimtxid;
+      /////
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function numberWithCommas(num: any) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function insertDecimal(num: any) {
+    return Number((num / 1000000).toFixed(3));
+  }
+  console.log(insertDecimal(pendingreflections));
+  const test2 = insertDecimal(pendingreflections);
+  const formattedBalance = numberWithCommas(test2);
+
+  const jsonRpcUrlMap = {
+    1: ["https://mainnet.infura.io/v3/fc5d70bd4f49467289b3babe3d8edd97"],
+    3: ["https://ropsten.infura.io/v3/<YOUR_INFURA_PROJECT_ID>"],
+  };
 
   return (
     <>
