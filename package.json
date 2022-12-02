@@ -50,6 +50,7 @@
     "react": "18.2.0",
     "react-datetime": "^3.2.0",
     "react-dom": "18.2.0",
+    "react-player": "^2.11.0",
     "react-redux": "^8.0.4",
     "react-scroll": "^1.8.6",
     "react-trading-ui": "^0.1.5",

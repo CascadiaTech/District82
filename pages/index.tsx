@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   const context = useWeb3React();
   const { library } = context;
 const [isended, setisended] = useState(false)
-const videoRef: any = useRef(null) as React.MutableRefObject<null>;
+const videoRef: any = useRef(null);
 useEffect(() => {
   videoRef.current.defaultMuted = true;
 })
@@ -44,16 +44,26 @@ attemptPlay()
 //</video>`,
   //}}
 
+
   return (
     <>
-    
-          <main className={styles.main}>
-        <video ref={videoRef} className="w-screen h-screen" autoPlay muted playsInline onEnded={()=>RenderButtons()}>
-            <source src="./newvideo.mp4" type='video/mp4'/> Your browser does not support the video tag, update your browser
+
+<div className=" h-screen flex flex-col items-center justify-center text-center text-white py-0 px-3">
+  
+    <div className="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
+        <video ref={videoRef} className="min-w-full min-h-full absolute object-cover" playsInline onEnded={()=>RenderButtons()} autoPlay muted >
+        <source src="./newvideo.mp4" type='video/mp4'/> Your browser does not support the video tag, update your browser
         </video>
 
-<DappComponent ended={isended}></DappComponent>
-</main>
+    </div>
+    <DappComponent ended={isended}></DappComponent>
+</div>
+
+
+    
+
+
+
         </>
   );
 };
