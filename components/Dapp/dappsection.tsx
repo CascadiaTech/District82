@@ -133,7 +133,7 @@ export default function DappComponent(props: any) {
           <div className="flex flex-row ">
             <div className="flex flex-col text-left text-white">
               <div className="grid grid-cols-4 gap-4 mx-20">
-                <div className="mr-28 justify-center text-center col-span-2  h-fit">
+                <div className="mr-28 bg-black justify-center text-center col-span-2  h-fit">
                   <h1 className={'text-bold text-gray-100 text-3xl'}>Claim Reflections</h1>
                   <p className={'text-gray-100 text-xl'}> Your pending Relfections: <br/> $0.000.012 USDC</p>
                   <button
@@ -147,7 +147,7 @@ export default function DappComponent(props: any) {
                   </button>
                 </div>
 
-                <div className="justify-center col-span-2 text-center h-fit">
+                <div className="bg-black justify-center col-span-2 text-center h-fit">
                   <Image
                     className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
                     onClick={() => setdistrictactive(false)}
@@ -157,7 +157,7 @@ export default function DappComponent(props: any) {
                   ></Image>
                   <p>Click me!</p>
                 </div>
-                <div className="text-center col-span-3 h-fit py-10">
+                <div className="text-center bg-black col-span-2 h-fit py-10">
                 <span className='text-bold text-gray-100 text-3xl'>
                       <Typewriter
                         options={{
@@ -179,9 +179,9 @@ export default function DappComponent(props: any) {
                       />
                     </span>
                 </div>
-                <div className="text-center col-span-2 h-fit py-10">
-                  <h1 className={'text-bold text-gray-100 text-3xl'}> Your Account: {account}</h1>
-                  <p className={'text-gray-100 text-xl'}> Total relfections distributed: $12,213</p>
+                <div className="text-center bg-black col-span-2 h-fit py-10">
+                  <h1 className={'text-bold text-gray-100 text-xl'}> Your Account: {account}</h1>
+                  <p className={'text-gray-100 text-lg'}> Total relfections distributed: $12,213</p>
                 </div>
               </div>
             </div>
