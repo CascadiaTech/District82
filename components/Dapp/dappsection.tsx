@@ -16,19 +16,55 @@ import {
   Web3Provider,
 } from "@ethersproject/providers";
 import Typewriter from 'typewriter-effect'
+import { formatEther } from "@ethersproject/units";
 export default function DappComponent(props: any) {
   const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
   const context = useWeb3React();
   const { library } = context;
+  const [balance, setbalance] = useState(Number)
+  const [totaldistributed, settotaldistributed] = useState(Number)
   const [distict, setdistrictactive] = useState(false);
   const [buttonhidden, setbuttonhidden] = useState(true);
   const [loading, setLoading] = useState(false);
   const [pendingreflections, setpendingreflections] = useState(Number);
   const [uniswaprovider, setuniswapprivder] = useState();
-  const D82contract = "0x00000000000000000000000000000";
+  //const D82contract = "0x00000000000000000000000000000";
 
   useEffect(() => {
+    async function Fetchbalance() {
+      if (!account) {
+        console.log({ message: 'Hold On there Partner, there seems to be an Account err!' })
+        return
+      }
+  
+      try {
+        setLoading(true)
+        const abi = abiObject
+        const provider = new Web3Provider(
+          library?.provider as ExternalProvider | JsonRpcFetchFunc
+        );
+        const contractaddress = '0xFC2C1EdBc2715590667c7c4BE0563010aBC9E205'// "clienttokenaddress"
+        const contract = new Contract(contractaddress, abi, provider)
+        const balance = await new contract.balanceOf(account) //.claim(account,amount)
+        const Claimtxid = await balance
+        const finalbalance = Number(balance)
+        const Fixeddecimals = finalbalance.toFixed(2)
+        const Numberify = Number(Fixeddecimals)
+        setbalance(Numberify)
+        console.log(Numberify)
+  
+        return Claimtxid
+        /////
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+      } finally {
+        setLoading(false)
+      }
+    }
+  
+
     async function PendingReflections() {
       try {
         setLoading(true);
@@ -36,7 +72,7 @@ export default function DappComponent(props: any) {
         const provider = new Web3Provider(
           library?.provider as ExternalProvider | JsonRpcFetchFunc
         );
-        const contractaddress = "0x103b603D95F769a8184c1e7cd49c81Bc826aB6E8"; // "clienttokenaddress"
+        const contractaddress = "0xFC2C1EdBc2715590667c7c4BE0563010aBC9E205"; // "clienttokenaddress"
         const contract = new Contract(contractaddress, abi, provider);
         const rewardToken = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
         const Reflections = await contract.withdrawableDividendOf(
@@ -57,7 +93,34 @@ export default function DappComponent(props: any) {
         setLoading(false);
       }
     }
+    async function FetchDistributed() {
+      try {
+        setLoading(true);
+        const abi = abiObject;
+        const provider = new Web3Provider(
+          library?.provider as ExternalProvider | JsonRpcFetchFunc
+        );
+        const contractaddress = "0xFC2C1EdBc2715590667c7c4BE0563010aBC9E205"; // "clienttokenaddress"
+        const contract = new Contract(contractaddress, abi, provider);
+        const rewardToken = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
+        const Reflections = await contract.getTotalDividendsDistributed(
+          rewardToken
+        ); 
+        const finalnumber = Number(Reflections);
+        settotaldistributed(finalnumber);
+        console.log(Reflections);
+
+        return finalnumber;
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    }
     PendingReflections();
+    Fetchbalance();
+    FetchDistributed()
   }, [account]);
 
   useEffect(() => {
@@ -92,7 +155,7 @@ export default function DappComponent(props: any) {
         library?.provider as ExternalProvider | JsonRpcFetchFunc
       );
       const signer = provider.getSigner();
-      const contractaddress = "0x103b603D95F769a8184c1e7cd49c81Bc826aB6E8"; // "clienttokenaddress"
+      const contractaddress = "0xFC2C1EdBc2715590667c7c4BE0563010aBC9E205"; // "clienttokenaddress"
       const contract = new Contract(contractaddress, abi, signer);
       const ClaimTokens = await contract.claim(); //.claim()
       const signtransaction = await signer.signTransaction(ClaimTokens);
@@ -132,22 +195,23 @@ export default function DappComponent(props: any) {
         <div className="absolute transition-all">
           <div className="flex flex-row ">
             <div className="flex flex-col text-left text-white">
-              <div className="grid grid-cols-4 gap-4 mx-20">
-                <div className="mr-28 bg-black justify-center text-center col-span-2  h-fit">
+              <div className="pt-5 grid grid-cols-4 gap-4 mx-20">
+                <div className="mr-28 bg-transparent justify-center text-center col-span-3  h-fit">
                   <h1 className={'text-bold text-gray-100 text-3xl'}>Claim Reflections</h1>
-                  <p className={'text-gray-100 text-xl'}> Your pending Relfections: <br/> $0.000.012 USDC</p>
+                  <p className={'text-gray-100 text-xl'}> Your pending Relfections: <br/> ${pendingreflections} USDC</p>
                   <button
                     style={{ fontFamily: "Cinzel, serif" }}
                     type="button"
+                    onClick={() => Claim()}
                     className="elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10
                      text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
-                     focus:ring-blue-300 font-medium rounded-lg text-3xl px-5 py-2.5 mb-6"
+                     focus:ring-blue-300 font-medium rounded-lg text-3xl px-20 py-2.5 mb-6"
                   >
                     Claim
                   </button>
                 </div>
 
-                <div className="bg-black justify-center col-span-2 text-center h-fit">
+                <div className="bg-transparent justify-center col-span-1 text-center h-fit">
                   <Image
                     className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
                     onClick={() => setdistrictactive(false)}
@@ -155,9 +219,8 @@ export default function DappComponent(props: any) {
                     width={160}
                     src={d82}
                   ></Image>
-                  <p>Click me!</p>
                 </div>
-                <div className="text-center bg-black col-span-2 h-fit py-10">
+                <div className="text-left bg-transparent col-span-4 h-fit py-10">
                 <span className='text-bold text-gray-100 text-3xl'>
                       <Typewriter
                         options={{
@@ -168,7 +231,7 @@ export default function DappComponent(props: any) {
                         }}
                       />
                     </span>
-                    <span onClick={() => window.open('https://etherscan.io/token/0xfc2c1edbc2715590667c7c4be0563010abc9e205?a=0x94c031726851c62ce257eb43942b40e808fbdf56')} className='cursor-pointer text-gray-100 text-lg hover:text-gray-300'>
+                    <span onClick={() => window.open('https://etherscan.io/token/0xfc2c1edbc2715590667c7c4be0563010abc9e205/')} className='cursor-pointer text-gray-100 text-lg hover:text-gray-300'>
                       <Typewriter
                         options={{
                           strings: ['Token address: 0xFC2C1EdBc2715590667c7c4BE0563010aBC9E205'],
@@ -178,10 +241,53 @@ export default function DappComponent(props: any) {
                         }}
                       />
                     </span>
+                    <span className='cursor-pointer text-gray-100 text-lg hover:text-gray-300'>
+                      <Typewriter
+                        options={{
+                          strings: [`Total Reflections Distributed: ${totaldistributed}`],
+                          autoStart: true,
+                          loop: true,
+                          deleteSpeed: 1500000000000000,
+                          delay: 10,
+                        }}
+                      />
+                    </span>
                 </div>
-                <div className="text-center bg-black col-span-2 h-fit py-10">
-                  <h1 className={'text-bold text-gray-100 text-xl'}> Your Account: {account}</h1>
-                  <p className={'text-gray-100 text-lg'}> Total relfections distributed: $12,213</p>
+                <div className="text-centerbg-transparent col-span-4 h-fit py-10">
+
+                    <span onClick={() => window.open(`https://etherscan.io/address/${account}`)} className='cursor-pointer text-gray-100 text-2xl hover:text-gray-300'>
+                      <Typewriter
+                        options={{
+                          strings: [`Your Account: ${account}`],
+                          autoStart: true,
+                          loop: true,
+                          deleteSpeed: 1500000000000000,
+                          delay: 1,
+                        }}
+                      />
+                    </span>
+                    <span onClick={() => window.open(`https://etherscan.io/address/${account}`)} className='cursor-pointer text-gray-100 text-lg hover:text-gray-300'>
+                      <Typewriter
+                        options={{
+                          strings: [`Your D82 Balance: ${balance}`],
+                          autoStart: true,
+                          loop: true,
+                          deleteSpeed: 1500000000000000,
+                          delay: 20,
+                        }}
+                      />
+                    </span>
+                    <span onClick={() => window.open(`https://etherscan.io/address/${account}`)} className='cursor-pointer text-gray-100 text-lg hover:text-gray-300'>
+                      <Typewriter
+                        options={{
+                          strings: [`Your Percentage of the supply ${balance / 100000}`],
+                          autoStart: true,
+                          loop: true,
+                          deleteSpeed: 1500000000000000,
+                          delay: 3,
+                        }}
+                      />
+                    </span>
                 </div>
               </div>
             </div>
@@ -222,53 +328,53 @@ export default function DappComponent(props: any) {
                 "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
               }
             >
-              3
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              4
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              5
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              6
+              
             </div>
 
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              1
+              
             </div>
             <div
               className={"bg-transparentw-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              2
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              3
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              4
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              5
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              6
+              
             </div>
 
             <div className={"w-20 h-20"}>
@@ -284,52 +390,52 @@ export default function DappComponent(props: any) {
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              2
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              3
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              4
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              5
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              6
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              1
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              2
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              3
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              4
+              
             </div>
             <div
               className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
-              5
+              
             </div>
             <div className={"w-20 h-20"}>
               <Image
