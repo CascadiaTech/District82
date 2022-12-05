@@ -3,6 +3,9 @@
 .container {
   padding: 0 2rem;
 }
+.Audiowide{
+  font-family: 'Audiowide'
+}
 
 .main {
   min-height: 100vh;

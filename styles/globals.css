@@ -33,6 +33,10 @@ a {
   }
 }
 
+.Audiowide{
+  font-family: 'Audiowide'
+}
+
 .flexbox-container {
   display: flex;
   flex-direction: row;
