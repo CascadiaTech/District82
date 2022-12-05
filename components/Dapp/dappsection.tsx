@@ -131,14 +131,14 @@ export default function DappComponent(props: any) {
         <div className="absolute transition-all">
           <div className="flex flex-row ">
             <div className="flex flex-col text-left text-white">
-              <div className="grid grid-cols-4 gap-4">
-                <div className="justify-center text-center col-span-3 h-fit">
+              <div className="grid grid-cols-4 gap-4 mx-20">
+                <div className="mr-28 justify-center text-center col-span-2  h-fit">
                   <h1 className={'text-bold text-gray-100 text-3xl'}>Claim Reflections</h1>
                   <p className={'text-gray-100 text-xl'}> Your pending Relfections: <br/> $0.000.012 USDC</p>
                   <button
                     style={{ fontFamily: "Cinzel, serif" }}
                     type="button"
-                    className="w-fit px-20 elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10
+                    className="elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10
                      text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
                      focus:ring-blue-300 font-medium rounded-lg text-3xl px-5 py-2.5 mb-6"
                   >
@@ -146,21 +146,21 @@ export default function DappComponent(props: any) {
                   </button>
                 </div>
 
-                <div className="justify-center text-center h-20">
+                <div className="justify-center col-span-2 text-center h-fit">
                   <Image
                     className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
                     onClick={() => setdistrictactive(false)}
-                    height={120}
-                    width={120}
+                    height={160}
+                    width={160}
                     src={d82}
                   ></Image>
                   <p>Click me!</p>
                 </div>
-                <div className="text-center col-span-3 h-fit py-10">
+                <div className="mr-28 text-center col-span-2 h-fit w-fit px-20 py-10">
                   <h1 className={'text-bold text-gray-100 text-3xl'}> District 82 </h1>
-                  <p className={'text-gray-100 text-xl'}> Token Adress: 0x00000000000000000000000000000000000</p>
+                  <p className={'text-gray-100 text-xl'}> Token Adress: 0x000000000</p>
                 </div>
-                <div className="text-center h-fit py-10">
+                <div className="text-center col-span-2 h-fit py-10">
                   <h1 className={'text-bold text-gray-100 text-3xl'}> Your Account: {account}</h1>
                   <p className={'text-gray-100 text-xl'}> Total relfections distributed: $12,213</p>
                 </div>
