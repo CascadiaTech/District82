@@ -35,7 +35,7 @@ export const ConnectWallet = () => {
  // }, []);
 
   const { chainId, account, activate, active, library, deactivate } =
-    useWeb3React<Web3Provider>();
+    useWeb3React();
   const ConnectInjected = () => {
     activate(injectedConnector);
     setProvider("coinbaseWallet");
