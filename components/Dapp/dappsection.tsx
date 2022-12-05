@@ -7,11 +7,15 @@ import twitter from "../../assets/twitter.png";
 import telegram from "../../assets/telegram.png";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-import dextools from '../../assets/dextools.png'
+import dextools from "../../assets/dextools.png";
 import { Contract } from "@ethersproject/contracts";
 import Swal from "sweetalert2";
 import { abiObject } from "../../contracts/abi.mjs";
-import { ExternalProvider, JsonRpcFetchFunc, Web3Provider } from "@ethersproject/providers";
+import {
+  ExternalProvider,
+  JsonRpcFetchFunc,
+  Web3Provider,
+} from "@ethersproject/providers";
 export default function DappComponent(props: any) {
   const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
@@ -54,10 +58,8 @@ export default function DappComponent(props: any) {
       }
     }
     PendingReflections();
-
   }, [account]);
 
-  
   useEffect(() => {
     async function setvisibility() {
       if (props.ended === false) {
@@ -68,7 +70,6 @@ export default function DappComponent(props: any) {
     setvisibility();
   });
 
-  
   async function Claim() {
     if (!account) {
       Swal.fire({
@@ -129,35 +130,44 @@ export default function DappComponent(props: any) {
       {distict ? (
         <div className="absolute transition-all">
           <div className="flex flex-row ">
-            <div className="cursor-pointer flex flex-col text-left text-white">
-              <p> District 82 </p>
-              <p> Token Adress: 0x00000000000000000000000000000000000</p>
-              <p> Your Account: {account}</p>
-              <p> Total relfections distributed: $12,213</p>
-              <p> Your pending Relfections:</p>
+            <div className="flex flex-col text-left text-white">
+              <div className="grid grid-cols-4 gap-4">
+                <div className="justify-center text-center col-span-3 h-fit">
+                  <h1 className={'text-bold text-gray-100 text-3xl'}>Claim Reflections</h1>
+                  <p className={'text-gray-100 text-xl'}> Your pending Relfections: <br/> $0.000.012 USDC</p>
+                  <button
+                    style={{ fontFamily: "Cinzel, serif" }}
+                    type="button"
+                    className="w-fit px-20 elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10
+                     text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
+                     focus:ring-blue-300 font-medium rounded-lg text-3xl px-5 py-2.5 mb-6"
+                  >
+                    Claim
+                  </button>
+                </div>
+
+                <div className="justify-center text-center h-20">
+                  <Image
+                    className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                    onClick={() => setdistrictactive(false)}
+                    height={120}
+                    width={120}
+                    src={d82}
+                  ></Image>
+                  <p>Click me!</p>
+                </div>
+                <div className="text-center col-span-3 h-fit py-10">
+                  <h1 className={'text-bold text-gray-100 text-3xl'}> District 82 </h1>
+                  <p className={'text-gray-100 text-xl'}> Token Adress: 0x00000000000000000000000000000000000</p>
+                </div>
+                <div className="text-center h-fit py-10">
+                  <h1 className={'text-bold text-gray-100 text-3xl'}> Your Account: {account}</h1>
+                  <p className={'text-gray-100 text-xl'}> Total relfections distributed: $12,213</p>
+                </div>
+              </div>
             </div>
-            <Image
-              className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
-              onClick={() => setdistrictactive(false)}
-              height={100}
-              width={120}
-              src={d82}
-            ></Image>
           </div>
-          <div className="items-center justify-center w-96 content-center flex flex-col text-center text-white">
-            <h1> Claim Your relfection</h1>
-            <p> Your pending relfections: xxxxxx</p>
-            <button
-              style={{ fontFamily: "Cinzel, serif" }}
-              type="button"
-              className="tn: mx-0 w-full elevation-10 hover:elevation-50 sm: mx-24 md: mx-48 h-24 clip-path-mycorners justify-self-center mt-10
-            text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
-            focus:ring-blue-300 font-medium rounded-lg text-3xl px-5 py-2.5 mb-6 dark:bg-blue-600 dark:hover:bg-blue-700 
-            focus:outline-none dark:focus:ring-blue-800 text-4xl lg: mx-48"
-            >
-              Claim
-            </button>
-          </div>
+          <div className="items-center justify-center w-96 content-center flex flex-col text-center text-white"></div>
         </div>
       ) : (
         <div
