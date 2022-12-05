@@ -75,7 +75,9 @@ export const ConnectWallet = () => {
         <button
           type="button"
           onClick={onActiveClick}
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          className="w-fit px-20 elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10
+                     text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
+                     focus:ring-blue-300 font-medium rounded-lg text-3xl px-5 py-2.5 mb-6"
         >
           Disconnect Wallet
         </button>
@@ -84,7 +86,9 @@ export const ConnectWallet = () => {
           <button
             type="button"
             onClick={OnClick}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium mt-2 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="w-fit px-20 elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10
+                     text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
+                     focus:ring-blue-300 font-medium rounded-lg text-3xl px-5 py-2.5 mb-6"
           >
             Connect Wallet
           </button>

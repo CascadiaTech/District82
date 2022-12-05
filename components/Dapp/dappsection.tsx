@@ -5,7 +5,6 @@ import d82 from "../../assets/d82.png";
 import Image from "next/image";
 import twitter from "../../assets/twitter.png";
 import telegram from "../../assets/telegram.png";
-import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import dextools from "../../assets/dextools.png";
 import { Contract } from "@ethersproject/contracts";
@@ -16,6 +15,7 @@ import {
   JsonRpcFetchFunc,
   Web3Provider,
 } from "@ethersproject/providers";
+import Typewriter from 'typewriter-effect'
 export default function DappComponent(props: any) {
   const { account, chainId, active } = useWeb3React();
   const showConnectAWallet = Boolean(!account);
@@ -127,6 +127,7 @@ export default function DappComponent(props: any) {
 
   return (
     <>
+    {buttonhidden || account ? (<>
       {distict ? (
         <div className="absolute transition-all">
           <div className="flex flex-row ">
@@ -157,8 +158,26 @@ export default function DappComponent(props: any) {
                   <p>Click me!</p>
                 </div>
                 <div className="text-center col-span-3 h-fit py-10">
-                  <h1 className={'text-bold text-gray-100 text-3xl'}> District 82 </h1>
-                  <p className={'text-gray-100 text-xl'}> Token Adress: 0x00000000000000000000000000000000000</p>
+                <span className='text-bold text-gray-100 text-3xl'>
+                      <Typewriter
+                        options={{
+                          strings: ['District 82'],
+                          autoStart: true,
+                          loop: true,
+                          deleteSpeed: 1500000000000000,
+                        }}
+                      />
+                    </span>
+                    <span onClick={() => window.open('https://etherscan.io/token/0xfc2c1edbc2715590667c7c4be0563010abc9e205?a=0x94c031726851c62ce257eb43942b40e808fbdf56')} className='cursor-pointer text-gray-100 text-lg hover:text-gray-300'>
+                      <Typewriter
+                        options={{
+                          strings: ['Token address: 0xFC2C1EdBc2715590667c7c4BE0563010aBC9E205'],
+                          autoStart: true,
+                          loop: true,
+                          deleteSpeed: 1500000000000000,
+                        }}
+                      />
+                    </span>
                 </div>
                 <div className="text-center h-fit py-10">
                   <h1 className={'text-bold text-gray-100 text-3xl'}> Your Account: {account}</h1>
@@ -181,7 +200,7 @@ export default function DappComponent(props: any) {
             <div className={"w-20 h-20"}>
               <Image
                 className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                onClick={() => window.open("twitter.com/TheDistrict82")}
+                onClick={() => window.open("https://twitter.com/TheDistrict82")}
                 height={100}
                 width={100}
                 src={twitter}
@@ -206,48 +225,48 @@ export default function DappComponent(props: any) {
               3
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               4
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               5
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               6
             </div>
 
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               1
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparentw-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               2
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               3
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               4
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               5
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               6
             </div>
@@ -255,7 +274,7 @@ export default function DappComponent(props: any) {
             <div className={"w-20 h-20"}>
               <Image
                 className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                onClick={() => window.open("t.me/Collective333")}
+                onClick={() => window.open("https://t.me/Collective333")}
                 height={100}
                 width={100}
                 src={telegram}
@@ -263,52 +282,52 @@ export default function DappComponent(props: any) {
               <p> Chat</p>
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               2
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               3
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               4
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               5
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               6
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               1
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               2
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               3
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               4
             </div>
             <div
-              className={"bg-black w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
+              className={"bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"}
             >
               5
             </div>
@@ -317,7 +336,7 @@ export default function DappComponent(props: any) {
                 className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
                 onClick={() =>
                   window.open(
-                    "dextools.io/app/en/ether/pair-explorer/0xc4b478a43b357f9e76c7d6dc27eef8d78980eb5d"
+                    "https://dextools.io/app/en/ether/pair-explorer/0xc4b478a43b357f9e76c7d6dc27eef8d78980eb5d"
                   )
                 }
                 height={100}
@@ -328,7 +347,12 @@ export default function DappComponent(props: any) {
             </div>
           </div>
         </div>
-      )}
+      )}</>) : (<>
+      <div className="absolute flex flex-col justify-center content-center items-center">
+      <ConnectWallet></ConnectWallet>
+      </div>
+      </>)}
+
     </>
   );
 }
