@@ -86,9 +86,9 @@ export const ConnectWallet = () => {
           <button
             type="button"
             onClick={OnClick}
-            className="w-fit px-20 elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10
+            className="w-fit px-20 elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10 mr-8
                      text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
-                     focus:ring-blue-300 font-medium rounded-lg text-3xl px-5 py-2.5 mb-6"
+                     focus:ring-blue-300 font-medium rounded-lg text-3xl py-2.5 mb-6"
           >
             Connect Wallet
           </button>

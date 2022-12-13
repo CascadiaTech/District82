@@ -143,15 +143,14 @@ export default function DappComponent(props: any) {
         timer: 5000,
       });
     }
-    if (pendingreflections <= 0) {
-      Swal.fire({
+    try {
+      setLoading(true);
+      const HasReflections = pendingreflections == 0 ?       Swal.fire({
         icon: "error",
         title: "Currently You Do Not Have Any Reflections",
         timer: 5000,
-      });
-    }
-    try {
-      setLoading(true);
+      }) : setLoading(false)
+      await HasReflections
       const abi = abiObject;
       const provider = new Web3Provider(
         library?.provider as ExternalProvider | JsonRpcFetchFunc
@@ -182,8 +181,14 @@ export default function DappComponent(props: any) {
     return Number((num / 1000000).toFixed(3));
   }
   console.log(insertDecimal(pendingreflections));
-  const test2 = insertDecimal(pendingreflections);
-  const formattedBalance = numberWithCommas(test2);
+  const decimalpendingreflections = insertDecimal(pendingreflections);
+  const formattedRelfections = numberWithCommas(decimalpendingreflections);
+
+  const Decimal_DistributedReflections = insertDecimal(totaldistributed);
+  const formatted_distribution = numberWithCommas(Decimal_DistributedReflections);
+
+  const Decimal_balance = insertDecimal(balance /1000000000000);
+  const formatted_balance = numberWithCommas(Decimal_balance);
 
   const jsonRpcUrlMap = {
     1: ["https://mainnet.infura.io/v3/fc5d70bd4f49467289b3babe3d8edd97"],
@@ -198,8 +203,8 @@ export default function DappComponent(props: any) {
             <div className="absolute transition-all">
               <div className="flex flex-row ">
                 <div className="flex flex-col text-left text-white">
-                  <p className={'my-16'}></p>
-                  <div className="pt-5 grid grid-cols-4 gap-4 mx-20">
+                  <p className={'my-8'}></p>
+                  <div className="pt-5 grid grid-cols-4  mx-20">
                     <div className="mr-28 bg-transparent justify-center text-center col-span-3  h-fit">
                       <h1
                         style={{ fontFamily: "Audiowide" }}
@@ -212,8 +217,8 @@ export default function DappComponent(props: any) {
                         className={"text-gray-100 text-xl"}
                       >
                         {" "}
-                        Your pending Relfections: <br /> ${
-                          pendingreflections
+                        Your pending Reflections: <br /> ${
+                          formattedRelfections
                         }{" "}
                         USDC
                       </p>
@@ -256,30 +261,33 @@ export default function DappComponent(props: any) {
                           }}
                         />
                       </div>
-                      <span
+                      <div
                         onClick={() =>
                           window.open(
                             "https://etherscan.io/token/0xfc2c1edbc2715590667c7c4be0563010abc9e205/"
                           )
                         }
-                        className="cursor-pointer text-gray-100 text-2xl hover:text-gray-300"
+                        className="cursor-pointer text-gray-100 text-1xl hover:text-gray-300"
                       >
                         <Typewriter
+                        
                           options={{
                             strings: [
                               "Token address: 0xFC2C1EdBc2715590667c7c4BE0563010aBC9E205",
                             ],
+                            wrapperClassName: "Audiowide",
                             autoStart: true,
                             loop: true,
                             deleteSpeed: 1500000000000000,
+                            delay: 10,
                           }}
                         />
-                      </span>
-                      <span className="cursor-pointer text-gray-100 text-2xl">
+                      </div>
+                      <span className=" text-gray-100 text-xl">
                         <Typewriter
                           options={{
                             strings: [
-                              `Total Reflections Distributed: ${totaldistributed}`,
+                              `Total Reflections Distributed: $ ${formatted_distribution}`,
                             ],
                             autoStart: true,
                             loop: true,
@@ -289,12 +297,12 @@ export default function DappComponent(props: any) {
                         />
                       </span>
                     </div>
-                    <div className="text-centerbg-transparent col-span-4 h-fit py-10">
+                    <div className="text-centerbg-transparent col-span-4 mb-10 h-fit py-10">
                       <span
                         onClick={() =>
-                          window.open(`https://etherscan.io/address/${account}`)
+                          window.open(`https://app.zerion.io/${account}/overview`)
                         }
-                        className="cursor-pointer text-gray-100 text-2xl hover:text-gray-300"
+                        className="cursor-pointer text-gray-100 text-1xl hover:text-gray-300"
                       >
                         <Typewriter
                           options={{
@@ -303,14 +311,14 @@ export default function DappComponent(props: any) {
                             autoStart: true,
                             loop: true,
                             deleteSpeed: 1500000000000000,
-                            delay: 1,
+                            delay: 40,
                           }}
                         />
                       </span>
-                      <span className="cursor-pointer text-gray-100 text-2xl">
+                      <span className=" text-gray-100 text-xl">
                         <Typewriter
                           options={{
-                            strings: [`Your D82 Balance: ${balance}`],
+                            strings: [`Your D82 Balance: ${formatted_balance}`],
                             autoStart: true,
                             loop: true,
                             deleteSpeed: 1500000000000000,
@@ -318,18 +326,18 @@ export default function DappComponent(props: any) {
                           }}
                         />
                       </span>
-                      <span className="cursor-pointer text-gray-100 text-2xl">
+                      <span className=" text-gray-100 text-xl">
                         <Typewriter
                           options={{
                             strings: [
-                              `Your Percentage of the supply ${
-                                balance / 100000
-                              }`,
+                              `Your Percentage of the supply: ${
+                                (formatted_balance / 1).toFixed(3)
+                              } %`,
                             ],
                             autoStart: true,
                             loop: true,
                             deleteSpeed: 1500000000000000,
-                            delay: 3,
+                            delay: 30,
                           }}
                         />
                       </span>
@@ -368,7 +376,7 @@ export default function DappComponent(props: any) {
                     width={100}
                     src={d82}
                   ></Image>
-                  <p> The District</p>
+                  <p> District82</p>
                 </div>
                 <div
                   className={
@@ -502,7 +510,7 @@ export default function DappComponent(props: any) {
         </>
       ) : (
         <>
-          <div className="absolute flex flex-col justify-center content-center items-center">
+          <div className="transition-all duration-1000 absolute flex flex-col justify-center content-center items-center">
             <ConnectWallet></ConnectWallet>
           </div>
         </>
