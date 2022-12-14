@@ -248,7 +248,7 @@ export default function DappComponent(props: any) {
                     </div>
                     <div
                       style={{ fontFamily: "Audiowide" }}
-                      className="text-left bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-10"
+                      className="text-left elevation-10 bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-10"
                     >
                       <div
                         style={{ fontFamily: "Audiowide" }}
@@ -299,7 +299,7 @@ export default function DappComponent(props: any) {
                         />
                       </span>
                     </div>
-                    <div className="text-left bg-regalpurple rounded-2xl px-4 col-span-4 mb-10 h-fit py-10">
+                    <div className="text-left elevation-10 bg-regalpurple rounded-2xl px-4 col-span-4 mb-10 h-fit py-10">
                       <span
                         onClick={() =>
                           window.open(
@@ -362,7 +362,7 @@ export default function DappComponent(props: any) {
               <div className="grid grid-cols-9 gap-8 xl:gap-12">
                 <div className={"cursor-pointer w-20 h-20 "}>
                   <Image
-                    className="text-gray-500 hover:text-gray-900 hover:scale-110 transition-all duration-700 dark:hover:text-white"
+                    className="text-gray-500 elevation-10 hover:text-gray-900 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                     onClick={() => setdistrictactive(true)}
                     height={100}
                     width={100}
