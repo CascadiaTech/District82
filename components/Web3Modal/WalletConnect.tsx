@@ -6,7 +6,9 @@ import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 import { Provider, Web3Provider } from "@ethersproject/providers";
 import { connectors } from "./connectors";
+import Image from "next/image";
 import { Modal } from "flowbite-react";
+import connect from '../../assets/connect.png'
 export const ConnectWallet = () => {
   const [visible, setVisible] = useState(false);
 
@@ -82,16 +84,15 @@ export const ConnectWallet = () => {
           Disconnect Wallet
         </button>
       ) : (
-        <div>
-          <button
-            type="button"
-            onClick={OnClick}
-            className="w-fit px-20 elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10 mr-8
-                     text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
-                     focus:ring-blue-300 font-medium rounded-lg text-3xl py-2.5 mb-6"
+        <div className="flex flex-col items-center content-center px-auto">
+          <Image
+           className="cursor-pointer justify-center justify-self-center text-gray-500 hover:scale-110 duration-700 transition-all dark:hover:text-white"
+           onClick={() => OnClick()}
+           height={250}
+           width={700}
+           src={connect}
           >
-            Connect Wallet
-          </button>
+          </Image>
           <Modal show={visible} size="md" popup={true} onClose={OnOffClick}>
             <Modal.Header />
             <Modal.Body>

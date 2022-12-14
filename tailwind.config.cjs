@@ -40,6 +40,9 @@ module.exports = {
         'footer-texture': "url('/img/footer-texture.png')",
         'testvid': "url('../public/newvideo.mp4')",
       },
+      colors: {
+        'regalpurple': '#4F1257',
+      },
       spacing: {
         '40': '40vw',
         '45': '45vw',

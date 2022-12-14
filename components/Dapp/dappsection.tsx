@@ -2,12 +2,12 @@ import { useWeb3React } from "@web3-react/core";
 import "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { ConnectWallet } from "../Web3Modal/WalletConnect";
-import d82 from "../../assets/d82.png";
+import District from "../../assets/District.png";
 import Image from "next/image";
 import twitter from "../../assets/twitter.png";
-import telegram from "../../assets/telegram.png";
+import chat from "../../assets/chat.png";
 import "react-datetime/css/react-datetime.css";
-import dextools from "../../assets/dextools.png";
+import Chart from "../../assets/Chart.png";
 import { Contract } from "@ethersproject/contracts";
 import Swal from "sweetalert2";
 import { abiObject } from "../../contracts/abi.mjs";
@@ -17,6 +17,7 @@ import {
   Web3Provider,
 } from "@ethersproject/providers";
 import Typewriter from "typewriter-effect";
+import claim from "../../assets/claim.png";
 import { formatEther } from "@ethersproject/units";
 export default function DappComponent(props: any) {
   const { account, chainId, active } = useWeb3React();
@@ -145,12 +146,15 @@ export default function DappComponent(props: any) {
     }
     try {
       setLoading(true);
-      const HasReflections = pendingreflections == 0 ?       Swal.fire({
-        icon: "error",
-        title: "Currently You Do Not Have Any Reflections",
-        timer: 5000,
-      }) : setLoading(false)
-      await HasReflections
+      const HasReflections =
+        pendingreflections == 0
+          ? Swal.fire({
+              icon: "error",
+              title: "Currently You Do Not Have Any Reflections",
+              timer: 5000,
+            })
+          : setLoading(false);
+      await HasReflections;
       const abi = abiObject;
       const provider = new Web3Provider(
         library?.provider as ExternalProvider | JsonRpcFetchFunc
@@ -185,9 +189,11 @@ export default function DappComponent(props: any) {
   const formattedRelfections = numberWithCommas(decimalpendingreflections);
 
   const Decimal_DistributedReflections = insertDecimal(totaldistributed);
-  const formatted_distribution = numberWithCommas(Decimal_DistributedReflections);
+  const formatted_distribution = numberWithCommas(
+    Decimal_DistributedReflections
+  );
 
-  const Decimal_balance = insertDecimal(balance /1000000000000);
+  const Decimal_balance = insertDecimal(balance / 1000000000000);
   const formatted_balance = numberWithCommas(Decimal_balance);
 
   const jsonRpcUrlMap = {
@@ -203,7 +209,7 @@ export default function DappComponent(props: any) {
             <div className="absolute transition-all">
               <div className="flex flex-row ">
                 <div className="flex flex-col text-left text-white">
-                  <p className={'my-8'}></p>
+                  <p className={"my-8"}></p>
                   <div className="pt-5 grid grid-cols-4  mx-20">
                     <div className="mr-28 bg-transparent justify-center text-center col-span-3  h-fit">
                       <h1
@@ -222,30 +228,27 @@ export default function DappComponent(props: any) {
                         }{" "}
                         USDC
                       </p>
-                      <button
-                        style={{ fontFamily: "Audiowide" }}
-                        type="button"
+                      <Image
+                        className="cursor-pointer justify-center justify-self-center text-gray-500 hover:scale-110 duration-700 transition-all dark:hover:text-white"
                         onClick={() => Claim()}
-                        className="elevation-10 hover:elevation-50 h-24 clip-path-mycorners justify-self-center mt-10
-                     text-gray-100 bg-gray-400 transition ease-in-out duration-700 hover:bg-gray-800 hover:text-white focus:ring-4
-                     focus:ring-blue-300 font-medium rounded-lg text-3xl px-20 py-2.5 mb-6"
-                      >
-                        Claim
-                      </button>
+                        height={150}
+                        width={350}
+                        src={claim}
+                      ></Image>
                     </div>
 
                     <div className="bg-transparent justify-center col-span-1 text-center h-fit">
                       <Image
-                        className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                        className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                         onClick={() => setdistrictactive(false)}
                         height={160}
                         width={160}
-                        src={d82}
+                        src={District}
                       ></Image>
                     </div>
                     <div
                       style={{ fontFamily: "Audiowide" }}
-                      className="text-left bg-transparent col-span-4 h-fit py-10"
+                      className="text-left bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-10"
                     >
                       <div
                         style={{ fontFamily: "Audiowide" }}
@@ -270,7 +273,6 @@ export default function DappComponent(props: any) {
                         className="cursor-pointer text-gray-100 text-1xl hover:text-gray-300"
                       >
                         <Typewriter
-                        
                           options={{
                             strings: [
                               "Token address: 0xFC2C1EdBc2715590667c7c4BE0563010aBC9E205",
@@ -297,10 +299,12 @@ export default function DappComponent(props: any) {
                         />
                       </span>
                     </div>
-                    <div className="text-centerbg-transparent col-span-4 mb-10 h-fit py-10">
+                    <div className="text-left bg-regalpurple rounded-2xl px-4 col-span-4 mb-10 h-fit py-10">
                       <span
                         onClick={() =>
-                          window.open(`https://app.zerion.io/${account}/overview`)
+                          window.open(
+                            `https://app.zerion.io/${account}/overview`
+                          )
                         }
                         className="cursor-pointer text-gray-100 text-1xl hover:text-gray-300"
                       >
@@ -330,9 +334,9 @@ export default function DappComponent(props: any) {
                         <Typewriter
                           options={{
                             strings: [
-                              `Your Percentage of the supply: ${
-                                (formatted_balance / 1).toFixed(3)
-                              } %`,
+                              `Your Percentage of the supply: ${(
+                                formatted_balance / 1
+                              ).toFixed(3)} %`,
                             ],
                             autoStart: true,
                             loop: true,
@@ -355,29 +359,20 @@ export default function DappComponent(props: any) {
                   : "text-center text-white opacity-1 transition-all duration-1000 absolute"
               }
             >
-              <div className="grid grid-cols-6 lg:gap-4 xl:gap-12">
-                <div className={"w-20 h-20"}>
+              <div className="grid grid-cols-9 gap-8 xl:gap-12">
+                <div className={"cursor-pointer w-20 h-20 "}>
                   <Image
-                    className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                    onClick={() =>
-                      window.open("https://twitter.com/TheDistrict82")
-                    }
-                    height={100}
-                    width={100}
-                    src={twitter}
-                  ></Image>
-                  <p> Social net</p>
-                </div>
-                <div className={"w-20 h-20"}>
-                  <Image
-                    className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                    className="text-gray-500 hover:text-gray-900 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                     onClick={() => setdistrictactive(true)}
                     height={100}
                     width={100}
-                    src={d82}
+                    src={District}
                   ></Image>
-                  <p> District82</p>
+                  <p style={{ fontFamily: "Audiowide" }}> District82</p>
                 </div>
+                <div                   className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }></div>
                 <div
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
@@ -403,7 +398,12 @@ export default function DappComponent(props: any) {
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
                   }
-                ></div>
+                >
+                  {" "}
+                  <div className={"w-20 h-20"}>
+
+                  </div>
+                </div>
                 <div
                   className={
                     "bg-transparentw-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
@@ -418,7 +418,16 @@ export default function DappComponent(props: any) {
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
                   }
-                ></div>
+                >                    <Image
+                className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
+                onClick={() =>
+                  window.open("https://twitter.com/TheDistrict82")
+                }
+                height={100}
+                width={100}
+                src={twitter}
+              ></Image>
+              <p style={{ fontFamily: "Audiowide" }}> Social net</p></div>
                 <div
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
@@ -431,14 +440,7 @@ export default function DappComponent(props: any) {
                 ></div>
 
                 <div className={"w-20 h-20"}>
-                  <Image
-                    className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                    onClick={() => window.open("https://t.me/Collective333")}
-                    height={100}
-                    width={100}
-                    src={telegram}
-                  ></Image>
-                  <p> Chat</p>
+
                 </div>
                 <div
                   className={
@@ -469,8 +471,35 @@ export default function DappComponent(props: any) {
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
                   }
+                >                  <Image
+                className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
+                onClick={() => window.open("https://t.me/Collective333")}
+                height={100}
+                width={100}
+                src={chat}
+              ></Image>
+              <p style={{ fontFamily: "Audiowide" }}> Chat</p></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
                 ></div>
                 <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                                <div
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
                   }
@@ -492,7 +521,7 @@ export default function DappComponent(props: any) {
                 ></div>
                 <div className={"w-20 h-20"}>
                   <Image
-                    className="cursor-pointer text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                    className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                     onClick={() =>
                       window.open(
                         "https://dextools.io/app/en/ether/pair-explorer/0xc4b478a43b357f9e76c7d6dc27eef8d78980eb5d"
@@ -500,9 +529,9 @@ export default function DappComponent(props: any) {
                     }
                     height={100}
                     width={100}
-                    src={dextools}
+                    src={Chart}
                   ></Image>
-                  <p> Chart </p>
+                  <p style={{ fontFamily: "Audiowide" }}> Chart </p>
                 </div>
               </div>
             </div>
@@ -510,7 +539,7 @@ export default function DappComponent(props: any) {
         </>
       ) : (
         <>
-          <div className="transition-all duration-1000 absolute flex flex-col justify-center content-center items-center">
+          <div className="transition-all duration-1000 absolute flex flex-col mr-20 justify-center content-center items-center">
             <ConnectWallet></ConnectWallet>
           </div>
         </>
