@@ -248,7 +248,7 @@ export default function DappComponent(props: any) {
                     </div>
                     <div
                       style={{ fontFamily: "Audiowide" }}
-                      className="text-left elevation-24 bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-10"
+                      className="text-left  bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-10 hover:elevation-24 hover:scale-105 transition-all duration-500"
                     >
                       <div
                         style={{ fontFamily: "Audiowide" }}
@@ -299,7 +299,7 @@ export default function DappComponent(props: any) {
                         />
                       </span>
                     </div>
-                    <div className="text-left elevation-10 bg-regalpurple rounded-2xl px-4 col-span-4 mb-10 h-fit py-10">
+                    <div className="text-left elevation-10 bg-regalpurple rounded-2xl px-4 col-span-4 mb-10 h-fit py-10 hover:elevation-24 hover:scale-105 transition-all duration-500">
                       <span
                         onClick={() =>
                           window.open(
@@ -370,9 +370,11 @@ export default function DappComponent(props: any) {
                   ></Image>
                   <p style={{ fontFamily: "Audiowide" }}> District82</p>
                 </div>
-                <div                   className={
+                <div
+                  className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
-                  }></div>
+                  }
+                ></div>
                 <div
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
@@ -400,9 +402,7 @@ export default function DappComponent(props: any) {
                   }
                 >
                   {" "}
-                  <div className={"w-20 h-20"}>
-
-                  </div>
+                  <div className={"w-20 h-20"}></div>
                 </div>
                 <div
                   className={
@@ -414,20 +414,19 @@ export default function DappComponent(props: any) {
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
                   }
                 ></div>
-                <div
-                  className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
-                  }
-                >                    <Image
-                className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
-                onClick={() =>
-                  window.open("https://twitter.com/TheDistrict82")
-                }
-                height={100}
-                width={100}
-                src={twitter}
-              ></Image>
-              <p style={{ fontFamily: "Audiowide" }}> Social net</p></div>
+   <div className={"w-20 h-20"}>
+                  {" "}
+                  <Image
+                    className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
+                    onClick={() =>
+                      window.open("https://twitter.com/TheDistrict82","_self")
+                    }
+                    height={100}
+                    width={100}
+                    src={twitter}
+                  ></Image>
+                  <p style={{ fontFamily: "Audiowide" }}> Social net</p>
+                </div>
                 <div
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
@@ -439,8 +438,42 @@ export default function DappComponent(props: any) {
                   }
                 ></div>
 
-                <div className={"w-20 h-20"}>
-
+                <div className={"w-20 h-20"}></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+            <div className={"w-20 h-20"}>
+                  {" "}
+                  <Image
+                    className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
+                    onClick={() => window.open("https://t.me/Collective333","_self")}
+                    height={100}
+                    width={100}
+                    src={chat}
+                  ></Image>
+                  <p style={{ fontFamily: "Audiowide" }}> Chat</p>
                 </div>
                 <div
                   className={
@@ -463,43 +496,6 @@ export default function DappComponent(props: any) {
                   }
                 ></div>
                 <div
-                  className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
-                  }
-                ></div>
-                <div
-                  className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
-                  }
-                >                  <Image
-                className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
-                onClick={() => window.open("https://t.me/Collective333")}
-                height={100}
-                width={100}
-                src={chat}
-              ></Image>
-              <p style={{ fontFamily: "Audiowide" }}> Chat</p></div>
-                <div
-                  className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
-                  }
-                ></div>
-                <div
-                  className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
-                  }
-                ></div>
-                <div
-                  className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
-                  }
-                ></div>
-                <div
-                  className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
-                  }
-                ></div>
-                                <div
                   className={
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
                   }
@@ -524,7 +520,7 @@ export default function DappComponent(props: any) {
                     className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                     onClick={() =>
                       window.open(
-                        "https://dextools.io/app/en/ether/pair-explorer/0xc4b478a43b357f9e76c7d6dc27eef8d78980eb5d"
+                        "https://dextools.io/app/en/ether/pair-explorer/0xc4b478a43b357f9e76c7d6dc27eef8d78980eb5d","_self"
                       )
                     }
                     height={100}
