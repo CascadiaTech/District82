@@ -239,7 +239,7 @@ export default function DappComponent(props: any) {
 
                     <div className="bg-transparent justify-center col-span-1 text-center h-fit">
                       <Image
-                        className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
+                        className="elevation-24 cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                         onClick={() => setdistrictactive(false)}
                         height={160}
                         width={160}
@@ -248,7 +248,7 @@ export default function DappComponent(props: any) {
                     </div>
                     <div
                       style={{ fontFamily: "Audiowide" }}
-                      className="text-left elevation-10 bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-10"
+                      className="text-left elevation-24 bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-10"
                     >
                       <div
                         style={{ fontFamily: "Audiowide" }}
@@ -335,8 +335,8 @@ export default function DappComponent(props: any) {
                           options={{
                             strings: [
                               `Your Percentage of the supply: ${(
-                                formatted_balance / 1
-                              ).toFixed(3)} %`,
+                                formatted_balance / 100000
+                              ).toFixed(4)} %`,
                             ],
                             autoStart: true,
                             loop: true,
@@ -362,7 +362,7 @@ export default function DappComponent(props: any) {
               <div className="grid grid-cols-9 gap-8 xl:gap-12">
                 <div className={"cursor-pointer w-20 h-20 "}>
                   <Image
-                    className="text-gray-500 elevation-10 hover:text-gray-900 hover:scale-110 transition-all duration-700 dark:hover:text-white"
+                    className="text-gray-500 elevation-24 hover:text-gray-900 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                     onClick={() => setdistrictactive(true)}
                     height={100}
                     width={100}
