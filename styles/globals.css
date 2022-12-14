@@ -33,6 +33,12 @@ a {
   }
 }
 
+@font-face {
+  font-family: 'Audiowide';
+  src: url('./fonts/Audiowide.ttf') 
+  format('opentype');
+}
+
 .Audiowide{
   font-family: 'Audiowide'
 }

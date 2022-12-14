@@ -12,10 +12,7 @@ function getLibrary(provider: any): Web3Provider {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
- // useEffect(() => {
- //   const provider = window.localStorage.getItem("provider");
-  //  if (provider) activate(connectors as any[typeof provider]);
- // }, []);
+
   return(
   <Web3ReactProvider getLibrary={getLibrary}>
    <Component {...pageProps} />
