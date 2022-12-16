@@ -291,7 +291,7 @@ export default function DappComponent(props: any) {
                     </div>
                     <div
                       style={{ fontFamily: "Audiowide" }}
-                      className="text-left  bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-6 hover:elevation-24 hover:scale-105 transition-all duration-500"
+                      className="text-left  bg-regalpurple sm:w-fit rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-6 hover:elevation-24 hover:scale-105 transition-all duration-500"
                     >
                       <div
                         style={{ fontFamily: "Audiowide" }}
@@ -313,7 +313,7 @@ export default function DappComponent(props: any) {
                             "https://etherscan.io/token/0xfc2c1edbc2715590667c7c4be0563010abc9e205/"
                           )
                         }
-                        className="cursor-pointer text-gray-100 text-lg hover:text-gray-300 md:text-1xl"
+                        className="cursor-pointer text-gray-100 text-sm hover:text-gray-300 md:text-1xl"
                       >
                         <Typewriter
                           options={{
@@ -342,14 +342,14 @@ export default function DappComponent(props: any) {
                         />
                       </span>
                     </div>
-                    <div className="text-left elevation-10 bg-regalpurple rounded-2xl px-4 col-span-4 mb-10 h-fit py-4 hover:elevation-24 hover:scale-105 transition-all duration-500">
+                    <div className="text-left elevation-10 bg-regalpurple w-fit rounded-2xl px-4 col-span-4 mb-10 h-fit py-4 hover:elevation-24 hover:scale-105 transition-all duration-500">
                       <span
                         onClick={() =>
                           window.open(
                             `https://app.zerion.io/${account}/overview`
                           )
                         }
-                        className="cursor-pointer text-gray-100 text-1xl hover:text-gray-300"
+                        className="cursor-pointer text-gray-100 md:text-sm lg:text-1xl hover:text-gray-300"
                       >
                         <Typewriter
                           options={{
