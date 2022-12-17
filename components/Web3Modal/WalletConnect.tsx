@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 
 import { InjectedConnector } from "@web3-react/injected-connector";
@@ -11,7 +11,7 @@ import { Modal } from "flowbite-react";
 import connect from '../../assets/connect.png'
 export const ConnectWallet = () => {
   const [visible, setVisible] = useState(false);
-
+  const audioRef: any = useRef(null);
   const injectedConnector = new InjectedConnector({
     supportedChainIds: [1, 3, 4, 5, 42, 11155111],
   });
@@ -62,8 +62,16 @@ export const ConnectWallet = () => {
     console.log(chainId, account, active);
   });
 
+  const attemptPlay = () => {
+    audioRef?.current.play();
+    audioRef?.volume && audioRef?.volume == 0.5;
+    audioRef.current.volume = 0.5
+  };
+
+
   const OnClick = () => {
     setVisible(true);
+    attemptPlay()
   };
   const OnOffClick = () => {
     setVisible(false);
@@ -73,6 +81,9 @@ export const ConnectWallet = () => {
 
   return (
     <div>
+            <audio ref={audioRef} id="player" playsInline autoPlay loop>
+        <source src="./AIRGLOW.mp3" type="audio/mp3" />
+      </audio>
       {active ? (
         <button
           type="button"

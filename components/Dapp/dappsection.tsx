@@ -190,7 +190,6 @@ export default function DappComponent(props: any) {
   const Decimal_balance = insertDecimal(balance / 1000000000000);
   const formatted_balance = numberWithCommas(Decimal_balance);
 
-
   useEffect(() => {
     audioRef.current.defaultMuted = false;
   });
@@ -212,7 +211,7 @@ export default function DappComponent(props: any) {
   const attemptPlay = () => {
     audioRef.current.play();
     audioRef?.volume && audioRef?.volume == 0.5;
-    audioRef.current.volume = 0.5
+    audioRef.current.volume = 0.5;
     setpaused(false);
   };
   const attemptPause = () => {
@@ -291,7 +290,7 @@ export default function DappComponent(props: any) {
                     </div>
                     <div
                       style={{ fontFamily: "Audiowide" }}
-                      className="text-left  bg-regalpurple sm:w-fit rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-6 hover:elevation-24 hover:scale-105 transition-all duration-500"
+                      className="text-left  bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-6 hover:elevation-24 hover:scale-105 transition-all duration-500"
                     >
                       <div
                         style={{ fontFamily: "Audiowide" }}
@@ -462,13 +461,13 @@ export default function DappComponent(props: any) {
                   <Image
                     className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                     onClick={() =>
-                      window.open("https://twitter.com/TheDistrict82", "_self")
+                      window.open("https://twitter.com/TheDistrict82")
                     }
                     height={100}
                     width={100}
                     src={twitter}
                   ></Image>
-                  <p style={{ fontFamily: "Audiowide"}}> Social net</p>
+                  <p style={{ fontFamily: "Audiowide" }}> Social net</p>
                 </div>
                 <div
                   className={
@@ -507,11 +506,11 @@ export default function DappComponent(props: any) {
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
                   }
                 ></div>
-            <div className={"w-20 h-20"}>
+                <div className={"w-20 h-20"}>
                   {" "}
                   <Image
                     className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
-                    onClick={() => window.open("https://t.me/Collective333","_self")}
+                    onClick={() => window.open("https://t.me/Collective333")}
                     height={100}
                     width={100}
                     src={chat}
@@ -563,7 +562,7 @@ export default function DappComponent(props: any) {
                     className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                     onClick={() =>
                       window.open(
-                        "https://dextools.io/app/en/ether/pair-explorer/0xc4b478a43b357f9e76c7d6dc27eef8d78980eb5d","_self"
+                        "https://dextools.io/app/en/ether/pair-explorer/0xc4b478a43b357f9e76c7d6dc27eef8d78980eb5d"
                       )
                     }
                     height={100}
@@ -658,6 +657,46 @@ export default function DappComponent(props: any) {
                     </svg>
                   )}
                 </div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >1</div>
+                              <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >1</div>
+                              <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >2</div>
+                              <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >2</div>
+                                            <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >2</div>
+                                            <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >2</div>
+                                            <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >2</div>
+                                            <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >2</div>
               </div>
             </div>
           )}
