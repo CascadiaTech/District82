@@ -571,47 +571,47 @@ export default function DappComponent(props: any) {
                 </div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
                 <div
                   className={
-                    "cursor-pointer bg-transparent w-12 h-12 content-center items-center text-center  lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "cursor-pointer bg-transparent w-12 h-12 content-center items-center text-center  lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 >
                   {paused ? (
@@ -657,44 +657,44 @@ export default function DappComponent(props: any) {
                 </div>
                 <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
-                >1</div>
+                ></div>
                               <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
-                >1</div>
+                ></div>
                               <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
-                >2</div>
+                ></div>
                               <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
-                >2</div>
+                ></div>
                                             <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
-                >2</div>
+                ></div>
                                             <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
-                >2</div>
+                ></div>
                                             <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
-                >2</div>
+                ></div>
                                             <div
                   className={
-                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
-                >2</div>
+                ></div>
               </div>
             </div>
           )}
