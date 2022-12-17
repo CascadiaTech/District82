@@ -1,6 +1,6 @@
 import { useWeb3React } from "@web3-react/core";
 import "../../styles/Home.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ConnectWallet } from "../Web3Modal/WalletConnect";
 import District from "../../assets/District.png";
 import Image from "next/image";
@@ -29,16 +29,13 @@ export default function DappComponent(props: any) {
   const [distict, setdistrictactive] = useState(false);
   const [buttonhidden, setbuttonhidden] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [paused, setpaused] = useState(false);
   const [pendingreflections, setpendingreflections] = useState(Number);
-  const [uniswaprovider, setuniswapprivder] = useState();
-  //const D82contract = "0x00000000000000000000000000000";
 
+  const audioRef: any = useRef(null);
   useEffect(() => {
     async function Fetchbalance() {
       if (!account) {
-        console.log({
-          message: "Hold On there Partner, there seems to be an Account err!",
-        });
         return;
       }
 
@@ -111,7 +108,6 @@ export default function DappComponent(props: any) {
         );
         const finalnumber = Number(Reflections);
         settotaldistributed(finalnumber);
-        console.log(Reflections);
 
         return finalnumber;
       } catch (error) {
@@ -194,13 +190,40 @@ export default function DappComponent(props: any) {
   const Decimal_balance = insertDecimal(balance / 1000000000000);
   const formatted_balance = numberWithCommas(Decimal_balance);
 
-  const jsonRpcUrlMap = {
-    1: ["https://mainnet.infura.io/v3/fc5d70bd4f49467289b3babe3d8edd97"],
-    3: ["https://ropsten.infura.io/v3/<YOUR_INFURA_PROJECT_ID>"],
-  };
 
+  useEffect(() => {
+    audioRef.current.defaultMuted = false;
+  });
+  const playAudio = () => {
+    //setAudio(new Audio('./AIRGLOW.mp3')) // only call client
+    audioRef && audioRef.current;
+    if (audioRef.current.currentTime == 0) {
+      console.log(audioRef.currentTime);
+      audioRef.current.load();
+      audioRef.current.play().catch((error: any) => {
+        console.log("error attempting to play", error);
+      });
+      audioRef?.volume && audioRef?.volume == 0.5;
+      console.log("tried");
+    } else {
+      console.log("alreadyplaying");
+    }
+  };
+  const attemptPlay = () => {
+    audioRef.current.play();
+    audioRef?.volume && audioRef?.volume == 0.5;
+    audioRef.current.volume = 0.5
+    setpaused(false);
+  };
+  const attemptPause = () => {
+    audioRef.current.pause();
+    setpaused(true);
+  };
   return (
     <>
+      <audio ref={audioRef} id="player" playsInline autoPlay loop>
+        <source src="./AIRGLOW.mp3" type="audio/mp3" />
+      </audio>
       {buttonhidden || account ? (
         <>
           {distict ? (
@@ -268,7 +291,7 @@ export default function DappComponent(props: any) {
                     </div>
                     <div
                       style={{ fontFamily: "Audiowide" }}
-                      className="text-left  bg-regalpurple rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-10 hover:elevation-24 hover:scale-105 transition-all duration-500"
+                      className="text-left  bg-regalpurple sm:w-fit rounded-2xl px-4 mb-2 col-span-4 h-fit pb-3 pt-6 hover:elevation-24 hover:scale-105 transition-all duration-500"
                     >
                       <div
                         style={{ fontFamily: "Audiowide" }}
@@ -290,7 +313,7 @@ export default function DappComponent(props: any) {
                             "https://etherscan.io/token/0xfc2c1edbc2715590667c7c4be0563010abc9e205/"
                           )
                         }
-                        className="cursor-pointer text-gray-100 text-1xl hover:text-gray-300"
+                        className="cursor-pointer text-gray-100 text-sm hover:text-gray-300 md:text-1xl"
                       >
                         <Typewriter
                           options={{
@@ -319,14 +342,14 @@ export default function DappComponent(props: any) {
                         />
                       </span>
                     </div>
-                    <div className="text-left elevation-10 bg-regalpurple rounded-2xl px-4 col-span-4 mb-10 h-fit py-10 hover:elevation-24 hover:scale-105 transition-all duration-500">
+                    <div className="text-left elevation-10 bg-regalpurple w-fit rounded-2xl px-4 col-span-4 mb-10 h-fit py-4 hover:elevation-24 hover:scale-105 transition-all duration-500">
                       <span
                         onClick={() =>
                           window.open(
                             `https://app.zerion.io/${account}/overview`
                           )
                         }
-                        className="cursor-pointer text-gray-100 text-1xl hover:text-gray-300"
+                        className="cursor-pointer text-gray-100 md:text-sm lg:text-1xl hover:text-gray-300"
                       >
                         <Typewriter
                           options={{
@@ -384,8 +407,8 @@ export default function DappComponent(props: any) {
                   <Image
                     className="text-gray-500 elevation-24 hover:text-gray-900 hover:scale-110 transition-all duration-700 dark:hover:text-white"
                     onClick={() => setdistrictactive(true)}
-                    height={100}
-                    width={100}
+                    height={150}
+                    width={150}
                     src={District}
                   ></Image>
                   <p style={{ fontFamily: "Audiowide" }}> District82</p>
@@ -443,7 +466,7 @@ export default function DappComponent(props: any) {
                     width={100}
                     src={twitter}
                   ></Image>
-                  <p style={{ fontFamily: "Audiowide" }}> Social net</p>
+                  <p style={{ fontFamily: "Audiowide"}}> Social net</p>
                 </div>
                 <div
                   className={
@@ -482,7 +505,7 @@ export default function DappComponent(props: any) {
                     "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-24"
                   }
                 ></div>
-                <div className={"w-20 h-20"}>
+            <div className={"w-20 h-20"}>
                   {" "}
                   <Image
                     className="cursor-pointer text-gray-500 hover:scale-110 transition-all duration-700 dark:hover:text-white"
@@ -549,13 +572,99 @@ export default function DappComponent(props: any) {
                   ></Image>
                   <p style={{ fontFamily: "Audiowide" }}> Chart </p>
                 </div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "bg-transparent w-12 h-12 lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                ></div>
+                <div
+                  className={
+                    "cursor-pointer bg-transparent w-12 h-12 content-center items-center text-center  lg:w-20 lg:h-20 2xl:w-28 2xl:h-28"
+                  }
+                >
+                  {paused ? (
+                    <svg
+                      onClick={() => attemptPlay()}
+                      className="w-20 h-20 hover:scale-110 transition-all duration-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      onClick={() => attemptPause()}
+                      className="w-20 h-20 hover:scale-110 transition-all duration-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                        clipRule="evenodd"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                      />
+                    </svg>
+                  )}
+                </div>
               </div>
             </div>
           )}
         </>
       ) : (
         <>
-          <div className="transition-all duration-1000 absolute flex flex-col justify-center content-center items-center sm:mr-16 md:mr-24 lg:mr-32">
+          <div className="transition-all duration-1000 absolute flex flex-col mr-20 justify-center content-center items-center">
             <ConnectWallet></ConnectWallet>
           </div>
         </>
